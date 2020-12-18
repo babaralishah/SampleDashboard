@@ -1,0 +1,43 @@
+<div class="row">
+    <br><br>
+    <h1 style="text-align:center;"><b>Lets start the prediction</b></h1>
+    <div style="text-align:center">
+        <div class="row">
+            <br><br> <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input #fileInput name="file" type="file" (change)="handleFileInput($event.target.files)">
+        </div>
+        <br><br><br>
+        <div class="row">
+            <button class="btn btn-primary rounded-pill" (click)="uploadFile()">predict
+                it</button>
+        </div>
+        <br><br><br><br><br>
+        <div class="row">
+            <table id="results" class="table table-striped ">
+                <thead>
+                    <tr>
+                        <th *ngFor="let column of headers1">
+                            {{column}}
+                        </th>
+                    </tr>
+
+                    <tr *ngFor="let row of results">
+                        <td *ngFor="let col of headers1">
+                            {{row[col]}}
+                        </td>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+
+        <!-- Visualization -->
+        <div class="row">
+            <br><br>
+            <!-- <button class="btn btn-primary pull-right">Visualize it</button> -->
+
+        </div>
+        <div>
+        </div>
+    </div>
+</div>

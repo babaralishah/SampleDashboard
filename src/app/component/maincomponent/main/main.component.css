@@ -1,0 +1,46 @@
+.btn {
+    height: 45px;
+    /* margin-left: 20px; */
+    width: 100px;
+    font-size: 14px;
+    background-color: #38baa2;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 25px;
+}
+
+div {
+    font-family: 'Segoe UI', SegoeUI, 'Segoe WP', Tahoma, Arial, sans-serif;
+    color: black;
+    /* background-color: #3c3c41; */
+    background-color: #fff;
+    font-size: 19px;
+}
+
+#results {
+    /* font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; */
+    border-collapse: collapse;
+    width: 100%;
+}
+
+
+/* Border of the table */
+
+#results td,
+#results th {
+    border: 1px solid rgb(27, 167, 160);
+    padding: 14px;
+}
+
+#results tr:hover {
+    background-color: #00cba5;
+    color: white;
+}
+
+#results th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #21b29b;
+    color: white;
+}

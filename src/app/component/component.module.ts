@@ -29,6 +29,10 @@ import { LeadsComponent } from './leads/leads.component';
 import { AddAgentsComponent } from './agent/add-agents/add-agents.component';
 import { AddLeadsComponent } from './leads/add-leads/add-leads.component';
 import { AddInventoryComponent } from './inventory/add-inventory/add-inventory.component';
+import { MainComponent } from './maincomponent/main/main.component';
+import { HomeComponent } from './maincomponent/home/home.component';
+import { LoginComponent } from './AuthComponent/login/login.component';
+import { SignupComponent } from './AuthComponent/signup/signup.component';
 
 @NgModule({
   imports: [
@@ -61,7 +65,11 @@ import { AddInventoryComponent } from './inventory/add-inventory/add-inventory.c
     LeadsComponent,
     AddAgentsComponent,
     AddLeadsComponent,
-    AddInventoryComponent
+    AddInventoryComponent,
+    MainComponent,
+    HomeComponent,
+    LoginComponent,
+    SignupComponent
   ]
 })
 export class ComponentsModule {}

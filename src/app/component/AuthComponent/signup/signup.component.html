@@ -1,0 +1,63 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+<div class="imgcontainer">
+    <img src="assets/Images/mateus-campos-felipe-Fsgzm8N0hIY-unsplash.jpg" alt="Avatar" class="avatar">
+</div>
+
+<div class="container">
+    <form class="form-register" [formGroup]="registerForm" (ngSubmit)="registerUser()">
+        <div class="form-group" class='input-container'>
+            <div class="input-group">
+                <input type="text" class="form-control" class="input-field" class="form-control rounded-pill border-0 shadow-sm px-4" formControlName="username" id="username" placeholder="Username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Name is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" class="input-field" class="form-control rounded-pill border-0 shadow-sm px-4" formControlName="email" id="email" placeholder="Enter Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <input type="password" #password class="form-control" class="input-field" class="form-control rounded-pill border-0 shadow-sm px-4" formControlName="password" name="password" id="password" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <input type="password" #confirm class="form-control" class="input-field" class="form-control rounded-pill border-0 shadow-sm px-4" name="confirm" id="confirm" placeholder="Confirm Password" />
+            </div>
+            <!-- <div id='message'></div> -->
+        </div>
+        <div class="form-group">
+            <button type="submit" class='btn' class="btn btn-primary rounded-pill">Register</button>
+        </div>
+        <div class="lastdiv">Already Registered!
+            <a routerLink="/Login"> <b>Login!</b></a>
+        </div>
+
+
+        <!-- <div class="container " style="background-color:#f1f1f1 ">
+                <button type="button " class="cancelbtn ">Cancel</button>
+                <span class="psw ">Forgot <a href="# ">password?</a></span>
+            </div> -->
+    </form>
+</div>
