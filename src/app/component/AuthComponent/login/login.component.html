@@ -7,7 +7,7 @@
             </div>
             <div class="login-content text-center">
                 <div class="login">
-                    <form class="form-register" [formGroup]="loginForm" (ngSubmit)="loginUser()">
+                    <!-- <form class="form-register" [formGroup]="loginForm" (ngSubmit)="loginUser()">
                         <img src="assets/icons/avatar.svg">
                         <h3>Welcome to Agent Dashboard</h3>
                         <div class="input-div one" style="background-color: #fff; padding-left: 5px;">
@@ -15,7 +15,6 @@
                                 <i class="fa fa-user"></i>
                             </div>
                             <div class="div">
-                                <!-- <h5>Username</h5> -->
                                 <input type="text" class="input" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" type="email" name="email" formControlName="email" placeholder="Email address" required="" autofocus="" class="">
                                 <div *ngIf="submitted && f.email.errors" class="invalid-feedback text-left">
                                     <div *ngIf="f.email.errors.required">Email is required</div>
@@ -28,7 +27,6 @@
                                 <i class="fa fa-lock"></i>
                             </div>
                             <div class="div">
-                                <!-- <h5>Password</h5> -->
                                 <input type="password" class="input" class="input-field" type="password" formControlName="password" placeholder="Password" required="" class="" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                                 <div *ngIf="submitted && f.password.errors" class="invalid-feedback text-left">
                                     <div *ngIf="f.password.errors.required">Password is required</div>
@@ -40,7 +38,7 @@
 
                         <input type="submit" class="btn" value="Login">
                         <hr class="mt-4 mb-4">
-                    </form>
+                    </form> -->
                 </div>
             </div>
         </div>
