@@ -12,7 +12,7 @@
 </div>
 
 <div class="container">
-    <form class="form-register" [formGroup]="registerForm" (ngSubmit)="registerUser()">
+    <!-- <form class="form-register" [formGroup]="registerForm" (ngSubmit)="registerUser()">
         <div class="form-group" class='input-container'>
             <div class="input-group">
                 <input type="text" class="form-control" class="input-field" class="form-control rounded-pill border-0 shadow-sm px-4" formControlName="username" id="username" placeholder="Username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
@@ -45,7 +45,6 @@
             <div class="input-group">
                 <input type="password" #confirm class="form-control" class="input-field" class="form-control rounded-pill border-0 shadow-sm px-4" name="confirm" id="confirm" placeholder="Confirm Password" />
             </div>
-            <!-- <div id='message'></div> -->
         </div>
         <div class="form-group">
             <button type="submit" class='btn' class="btn btn-primary rounded-pill">Register</button>
@@ -53,11 +52,5 @@
         <div class="lastdiv">Already Registered!
             <a routerLink="/Login"> <b>Login!</b></a>
         </div>
-
-
-        <!-- <div class="container " style="background-color:#f1f1f1 ">
-                <button type="button " class="cancelbtn ">Cancel</button>
-                <span class="psw ">Forgot <a href="# ">password?</a></span>
-            </div> -->
-    </form>
+    </form> -->
 </div>
