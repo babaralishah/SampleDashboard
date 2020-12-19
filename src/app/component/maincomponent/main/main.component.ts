@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { RestService } from 'src/app/Services/rest.service';
-import { FileholderService } from 'src/app/Services/fileholder.service';
+import { Component, OnInit } from "@angular/core";
+import { RestService } from "src/app/Services/rest.service";
+import { FileholderService } from "src/app/Services/fileholder.service";
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css'],
+  selector: "app-main",
+  templateUrl: "./main.component.html",
+  styleUrls: ["./main.component.css"],
 })
 export class MainComponent implements OnInit {
   general_search: any;
@@ -12,16 +12,19 @@ export class MainComponent implements OnInit {
 
   fileToUpload: any;
   results: any;
+  isPreProcess: boolean = false;
+  isAlgoSelected: boolean = false;
+  isPrediction: boolean = false;
+  isFileSelected: boolean = true;
   constructor(
     public restservice: RestService,
-    // tslint:disable-next-line: no-shadowed-variable
     private FileholderService: FileholderService
   ) {}
   headers1 = [
-    'Algorithm',
-    'Test data Accuracy',
-    'Train data Accuracy',
-    'Training Time',
+    "Algorithm",
+    "Test data Accuracy",
+    "Train data Accuracy",
+    "Training Time",
   ];
   flag = false;
   stringifiedData: any;
@@ -33,13 +36,29 @@ export class MainComponent implements OnInit {
   receivedFile: any; //  = null;
   todaydate: any;
 
-  // tslint:disable-next-line: typedef
   ngOnInit() {}
-  // tslint:disable-next-line: typedef
+
+  performPreprocessing() {
+    this.isPreProcess = true;
+    this.isFileSelected = false;
+    this.isAlgoSelected = false;
+    this.isPrediction = false;
+  }
+  performAlgoSelection() {
+    this.isPreProcess = false;
+    this.isPrediction = false;
+    this.isAlgoSelected = true;
+  }
+  performPrediction(){
+    this.isPreProcess = false;
+    this.isAlgoSelected = false;
+    this.isPrediction = true;
+  }
+
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
     console.log(
-      'I am \'handleFileInput Function \': "File dragged but not uploaded yet"'
+      "I am 'handleFileInput Function ': \"File dragged but not uploaded yet\""
     );
   }
 
@@ -49,8 +68,8 @@ export class MainComponent implements OnInit {
     this.restservice.parseTable(this.fileToUpload).subscribe((data) => {
       // this.results = data[0].data;
       this.data = data;
-      console.log('Data: ', this.data);
-      console.log('Results: ', this.results);
+      console.log("Data: ", this.data);
+      console.log("Results: ", this.results);
 
       // this.router.navigateByUrl('/Visualization');
     });

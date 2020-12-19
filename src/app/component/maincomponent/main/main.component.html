@@ -1,36 +1,87 @@
-<div class="row">
-    <br><br>
-    <h1 style="text-align:center;"><b>Lets start the prediction</b></h1>
-    <div style="text-align:center">
-        <div class="row">
-            <br><br> <br />&nbsp;&nbsp;
-            <input #fileInput name="file" type="file" (change)="handleFileInput($event.target.files)">
-        </div>
-        <br><br><br>
-        <div class="row">
-            <button class="btn btn-primary rounded-pill" (click)="uploadFile()">predict
-                it</button>
-        </div>
-        <br><br><br><br><br>
-        <div class="row">
-            <table id="results" class="table table-striped ">
-                <thead>
-                    <tr>
-                        <th *ngFor="let column of headers1">
-                            {{column}}
-                        </th>
-                    </tr>
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <!-- <h1 style="text-align:center;"><b>Lets start the prediction</b></h1> -->
+            <div>
+                <div class="row" *ngIf="isFileSelected">
+                    <!-- Select the file to perform Prediction -->
+                    <div>
+                        <h2>Data File Selection</h2>
+                    </div>
+                    <br><br>
+                    <div>
+                        <input #fileInput name="file" type="file" (change)="handleFileInput($event.target.files)">
+                    </div>
+                    <br><br><br>
+                    <!-- <div class="row"> -->
+                    <button class="btn btn-primary" (click)="performPreprocessing()">Proceed Next for Preprocessing</button>
+                    <!-- <button class="btn btn-primary rounded-pill" (click)="uploadFile()">predict
+                it</button> -->
+                </div>
 
-                    <tr *ngFor="let row of results">
-                        <td *ngFor="let col of headers1">
-                            {{row[col]}}
-                        </td>
-                    </tr>
-                </thead>
+                <!-- Perform Preprocessing on the Data File -->
+                <!-- <br><br><br> -->
+                <div class="row" *ngIf="isPreProcess">
+                    <h2>Preprocessing</h2>
+                    <br><br> Following preprocessing techniques have been performed;
 
-            </table>
+                    <!-- <div class="row"> -->
+                    <br><br><br>
+                    <button class="btn btn-primary" (click)="performAlgoSelection()"> Proceed next for Algo selection</button>
+                    <!-- </div> -->
+                </div>
+
+                <!-- Select Algorithm to perform Prediction upon -->
+
+                <div class="row" *ngIf="isAlgoSelected">
+                    <br>
+                    <h2>Algorithm Selection</h2><br>
+                    <ul>
+                        <li>Regression</li>
+                        <li>Decision Tree</li>
+                        <li>Naive Bayes</li>
+                        <li>Random Forest</li>
+                    </ul>
+                </div>
+                <div class="row" *ngIf="isAlgoSelected">
+                    <button class="btn btn-primary" (click)="performPrediction()"> Proceed for Prediction</button>
+                </div>
+                <!-- Prediction Results in the Data Table -->
+                <div class="row" *ngIf="isPrediction">
+                    <table id="results" class="table table-striped ">
+                        <thead>
+                            <tr>
+                                <th *ngFor="let column of headers1">
+                                    {{column}}
+                                </th>
+                            </tr>
+
+                            <tr *ngFor="let row of results">
+                                <td *ngFor="let col of headers1">
+                                    {{row[col]}}
+                                </td>
+                            </tr>
+                        </thead>
+
+                    </table>
+                </div>
+                <div>
+                </div>
+            </div>
         </div>
-        <div>
+        <div class="col-1">
+
+            <div class="vl"></div>
+        </div>
+        <div class="col-3">
+            <h2>workspace</h2>
+            <ul>
+                <li>file 1</li>
+                <li>file 2</li>
+                <li>file 32</li>
+                <li>file 55</li>
+            </ul>
+            <button class="btn btn-group">chose file to perform</button>
         </div>
     </div>
 </div>

@@ -1,12 +1,17 @@
+.vl {
+    border-left: 3px solid green;
+    height: 550px;
+}
+
 .btn {
-    height: 45px;
+    /* height: 45px; */
     /* margin-left: 20px; */
-    width: 100px;
-    font-size: 14px;
+    /* width: 100px; */
+    /* font-size: 14px; */
     background-color: #38baa2;
     color: white;
     border: 1px solid transparent;
-    border-radius: 25px;
+    /* border-radius: 25px; */
 }
 
 div {
