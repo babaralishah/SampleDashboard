@@ -38,6 +38,11 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {}
 
+  backToFileInput(){
+    this.isFileSelected = true;
+    this.isPreProcess = false;
+  }
+
   performPreprocessing() {
     this.isPreProcess = true;
     this.isFileSelected = false;

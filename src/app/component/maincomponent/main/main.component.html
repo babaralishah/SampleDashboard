@@ -27,13 +27,14 @@
 
                     <!-- <div class="row"> -->
                     <br><br><br>
-                    <button class="btn btn-primary" (click)="performAlgoSelection()"> Proceed next for Algo selection</button>
+                    <button class="btn btn-primary" (click)="performAlgoSelection()"> Proceed next for Algo selection</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-primary pull-right" (click)="backToFileInput()">back</button>
                     <!-- </div> -->
                 </div>
 
                 <!-- Select Algorithm to perform Prediction upon -->
 
-                <div class="row" *ngIf="isAlgoSelected">
+                <div class=" row " *ngIf="isAlgoSelected ">
                     <br>
                     <h2>Algorithm Selection</h2><br>
                     <ul>
@@ -43,21 +44,22 @@
                         <li>Random Forest</li>
                     </ul>
                 </div>
-                <div class="row" *ngIf="isAlgoSelected">
-                    <button class="btn btn-primary" (click)="performPrediction()"> Proceed for Prediction</button>
+                <div class="row " *ngIf="isAlgoSelected ">
+                    <button class="btn btn-primary " (click)="performPrediction() "> Proceed for Prediction</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-primary pull-right " (click)="performPreprocessing()">back</button>
                 </div>
                 <!-- Prediction Results in the Data Table -->
-                <div class="row" *ngIf="isPrediction">
-                    <table id="results" class="table table-striped ">
+                <div class="row " *ngIf="isPrediction ">
+                    <table id="results " class="table table-striped ">
                         <thead>
                             <tr>
-                                <th *ngFor="let column of headers1">
+                                <th *ngFor="let column of headers1 ">
                                     {{column}}
                                 </th>
                             </tr>
 
-                            <tr *ngFor="let row of results">
-                                <td *ngFor="let col of headers1">
+                            <tr *ngFor="let row of results ">
+                                <td *ngFor="let col of headers1 ">
                                     {{row[col]}}
                                 </td>
                             </tr>
@@ -69,11 +71,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-1">
+        <div class="col-1 ">
 
-            <div class="vl"></div>
+            <div class="vl "></div>
         </div>
-        <div class="col-3">
+        <div class="col-3 ">
             <h2>workspace</h2>
             <ul>
                 <li>file 1</li>
@@ -81,7 +83,7 @@
                 <li>file 32</li>
                 <li>file 55</li>
             </ul>
-            <button class="btn btn-group">chose file to perform</button>
+            <button class="btn btn-group ">chose file to perform</button>
         </div>
     </div>
 </div>
