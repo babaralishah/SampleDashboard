@@ -19,7 +19,7 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: "",
-    title: "UI Components",
+    title: "MENU",
     icon: "mdi mdi-dots-horizontal",
     class: "nav-small-cap",
     extralink: true,
