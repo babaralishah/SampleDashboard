@@ -8,6 +8,7 @@ import { RedirectLoginGuard } from "../app/Services/Guards/redirectlogin.guard";
 
 import { FullComponent } from "./layouts/full/full.component";
 import { UserProfileComponent } from "./component/user-profile/user-profile.component";
+import { VisualizationComponent } from "./component/maincomponent/visualization/visualization.component";
 
 export const Approutes: Routes = [
   {
@@ -33,6 +34,7 @@ export const Approutes: Routes = [
           ),
       },
       { path: "Main", component: MainComponent },
+      { path: "Visualization", component: VisualizationComponent },
       { path: "Home", component: HomeComponent },
       { path: "Profile", component: UserProfileComponent },
       {
