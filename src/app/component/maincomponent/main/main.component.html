@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-6" *ngIf="isFileSelected">
             <div>
@@ -24,45 +24,49 @@
             <button class="btn btn-group">Choose File to Perform</button>
         </div>
     </div>
-    <div class="row">
-        <div class="row" *ngIf="isPreProcess">
-            <h2>Preprocessing</h2>
-            <br><br> Following preprocessing techniques have been performed;
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>
-                            Preprocess Tech
-                        </th>
-                        <th>Time taken</th>
-                    </tr>
+    <!-- <div class="row"> -->
+    <div class="row" *ngIf="isPreProcess">
+        <h2>Preprocessing</h2>
+        <br><br> Following preprocessing techniques have been performed;
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Preprocess Tech
+                    </th>
+                    <th>Time taken</th>
+                </tr>
 
-                    <tr>
-                        <td>
-                            Normalization
-                        </td>
-                        <td>
-                            3 sec
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Label Encoding
-                        </td>
-                        <td>
-                            2 sec
-                        </td>
-                    </tr>
-                </thead>
-            </table>
-            <br><br><br>
-            <button class="btn btn-primary" (click)="performAlgoSelection()"> Proceed next for Algo selection</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="btn btn-primary pull-right" (click)="backToFileInput()">back</button>
-        </div>
-        <div class="row" *ngIf="isAlgoSelected ">
+                <tr>
+                    <td>
+                        Normalization
+                    </td>
+                    <td>
+                        3 sec
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Label Encoding
+                    </td>
+                    <td>
+                        2 sec
+                    </td>
+                </tr>
+            </thead>
+        </table>
+        <br><br><br>
+        <button class="btn btn-primary" (click)="performAlgoSelection()"> Proceed next for Algo selection</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-primary pull-right" (click)="backToFileInput()">back</button>
+    </div>
+    <div *ngIf="isAlgoSelected ">
 
-            <h2>Algorithm Selection</h2>
-            <br> Select the Algorithm for Prediction
+        <h2>Algorithm Selection</h2>
+        <br>
+
+        <h4>Select the Algorithm for Prediction</h4>
+
+        <div class="row">
             <div class="col-12">
                 <br>
                 <table class="table table-striped ">
@@ -81,33 +85,36 @@
                 </table>
             </div>
         </div>
-        <div class="row" *ngIf="isAlgoSelected ">
-            <button class="btn btn-primary" (click)="performPrediction() "> Proceed for Prediction</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="btn btn-primary pull-right" (click)="performPreprocessing()">back</button>
-        </div>
-        <!-- Prediction Results in the Data Table -->
-        <div class="row" *ngIf="isPrediction">
-            <table id="results" class="table table-striped">
-                <thead>
-                    <tr>
-                        <th *ngFor="let column of headers1">
-                            {{column}}
-                        </th>
-                    </tr>
-
-                    <tr *ngFor="let row of results">
-                        <td *ngFor="let col of headers1">
-                            {{row[col]}}
-                        </td>
-                    </tr>
-                </thead>
-
-            </table>
-            <br>
-            <button class="btn btn-primary pull-right" (click)="backToPrediction()">back</button>
-            <br>
-        </div>
-        <div>
-        </div>
     </div>
+    <div class="row" *ngIf="isAlgoSelected ">
+        <div class="col-3">
+            <button class="btn btn-primary" (click)="performPrediction() "> Proceed for Prediction</button></div>
+
+        <button class="btn btn-primary pull-right" (click)="performPreprocessing()">back</button>
+    </div>
+    <!-- Prediction Results in the Data Table -->
+    <div class="row" *ngIf="isPrediction">
+        <table id="results" class="table table-striped">
+            <thead>
+                <tr>
+                    <th *ngFor="let column of headers1">
+                        {{column}}
+                    </th>
+                </tr>
+
+                <tr *ngFor="let row of results">
+                    <td *ngFor="let col of headers1">
+                        {{row[col]}}
+                    </td>
+                </tr>
+            </thead>
+
+        </table>
+        <br>
+        <button class="btn btn-primary pull-right" (click)="backToPrediction()">back</button>
+        <br>
+    </div>
+    <div>
+    </div>
+    <!-- </div> -->
 </div>
