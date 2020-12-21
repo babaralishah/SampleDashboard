@@ -66,6 +66,14 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
   {
+    path: "/Visualization",
+    title: "Visualization",
+    icon: "mdi mdi-account",
+    class: "",
+    extralink: false,
+    submenu: [],
+  },
+  {
     path: "/Login",
     title: "Login",
     icon: "mdi mdi-account",

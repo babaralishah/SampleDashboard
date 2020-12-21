@@ -1,0 +1,102 @@
+<div class="container">
+    <br><br>
+    <h1 style="text-align:center;"><b>Visualizations</b></h1>
+    <div class="row">
+        <form>
+            <div class="col-sm-6 col-md-6 pull-left">
+                <h2>Select predictor</h2>
+                <div class="col-md-6 btn2">
+                    <button (click)="setName1(data)" class="btn btn-primary" *ngFor="let data of backendData">{{data}}</button>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="col-sm-6 col-md-6 pull-right">
+                <h2>Select response</h2>
+                <div class="col-md-6 btn2">
+                    <button (click)="setName2(data)" class="btn btn-primary" *ngFor="let data of backendData">{{data}}</button>
+                </div>
+            </div><br><br>
+            <input type="submit" (click)="sendData()" value="Visualize">
+        </form>
+    </div>
+    <br>
+    <br>
+    <div class="row heading">
+        <!-- <div class=""> -->
+        <h4>Choose a visual</h4>
+        <!-- </div> -->
+        <button class="btn btn-primary" (click)="checkChart('bar')">Bar Chart</button>
+        <button class="btn btn-primary" (click)="checkChart('doughnut')">Doughnut Chart</button>
+        <button class="btn btn-primary" (click)="checkChart('pie')">Pie Chart</button>
+        <button class="btn btn-primary" (click)="checkChart('radar')">Radar Chart</button>
+        <button class="btn btn-primary" (click)="checkChart('line')">Line Chart</button>
+        <button class="btn btn-primary" (click)="checkChart('polar')">Polar Chart</button>
+        <button class="btn btn-primary" (click)="checkChart('bubble')">Bubble Chart</button>
+
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-sm-6" *ngIf="barChartData.length>0 && [chartname] == 'bar'">
+            <!-- Bar-chart --><br><br>
+            <h1><b>Bar Chart</b></h1><br><br>
+            <div class="chart" style="display: block">
+                <!-- <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [legend]="barChartLegend" [chartType]="barChartType"></canvas> -->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-sm-6" *ngIf="[chartname] == 'line'">
+            <!-- Line chart --><br><br>
+            <h1><b>Line Chart</b></h1><br><br>
+            <div class="chart" style="display: block">
+                <!-- <canvas baseChart [data]="lineChartData" [labels]="lineChartLabels" [chartType]="lineChartType"></canvas> -->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-sm-6" *ngIf="[chartname] == 'bubble'">
+            <!-- Bubble chart --><br><br>
+            <h1><b>Bubble Chart</b></h1><br><br>
+            <div class="chart" style="display: block">
+                <!-- <canvas baseChart [data]="bubbleChartData" [labels]="bubbleChartLabels" [chartType]="bubbleChartType"></canvas> -->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-sm-6" *ngIf="[chartname] == 'polar'">
+            <!-- Polar chart --><br><br>
+            <h1><b>Polar Chart</b></h1><br><br>
+            <div class="chart" style="display: block">
+                <!-- <canvas baseChart [data]="polarChartData" [labels]="polarChartLabels" [chartType]="polarChartType"></canvas> -->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-sm-6" *ngIf="[chartname] == 'doughnut'">
+            <!-- Doughnut chart --><br><br>
+            <h1><b>Doughnut Chart</b></h1><br><br>
+            <div class="chart" style="display: block">
+                <!-- <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"></canvas> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5 col-sm-6" *ngIf="[chartname] == 'pie'">
+            <!-- Pie chart --><br><br>
+            <h1><b>Pie Chart</b></h1><br><br>
+            <div class="chart" style="display: block">
+                <!-- <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"></canvas> -->
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-sm-6" *ngIf="[chartname] == 'radar'">
+            <!-- Radar chart --><br><br>
+            <h1><b>Radar Chart</b></h1><br><br>
+            <div class="chart" style="display: block">
+                <!-- <canvas baseChart [datasets]="radarChartData" [labels]="radarChartLabels" [chartType]="radarChartType"></canvas> -->
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 .vl {
-    border-left: 3px solid green;
+    border-left: 1px solid #7460ee;
     height: 550px;
 }
 
@@ -23,7 +23,6 @@ div {
 }
 
 #results {
-    /* font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; */
     border-collapse: collapse;
     width: 100%;
 }
@@ -33,12 +32,12 @@ div {
 
 #results td,
 #results th {
-    border: 1px solid rgb(27, 167, 160);
+    border: 1px solid rgb(220 226 225);
     padding: 14px;
 }
 
 #results tr:hover {
-    background-color: #00cba5;
+    background-color: #7460ee52;
     color: white;
 }
 
@@ -46,6 +45,6 @@ div {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
-    background-color: #21b29b;
+    background-color: #7460ee;
     color: white;
 }

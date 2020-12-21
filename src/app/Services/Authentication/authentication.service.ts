@@ -49,7 +49,6 @@ export class AuthenticationService {
     return this.httpClient.post(`${this.url}/users/login`, user);
   }
   ///////// Error Handling /////////////////
-  // tslint:disable-next-line: typedef
   handleError(error: HttpErrorResponse) {
     let msg = '';
     if (error.error instanceof ErrorEvent) {

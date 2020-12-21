@@ -24,7 +24,7 @@ export class MainComponent implements OnInit {
     "Algorithm",
     "Test data Accuracy",
     "Train data Accuracy",
-    "Training Time",
+    // "TrainingTime",
   ];
   flag = false;
   stringifiedData: any;
@@ -48,6 +48,7 @@ export class MainComponent implements OnInit {
     this.isFileSelected = false;
     this.isAlgoSelected = false;
     this.isPrediction = false;
+    this.uploadFile();
   }
   performAlgoSelection() {
     this.isPreProcess = false;
@@ -59,6 +60,11 @@ export class MainComponent implements OnInit {
     this.isAlgoSelected = false;
     this.isPrediction = true;
   }
+  backToPrediction(){
+    this.isPreProcess = false;
+    this.isAlgoSelected = true;
+    this.isPrediction = false;
+  }
 
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
@@ -67,12 +73,12 @@ export class MainComponent implements OnInit {
     );
   }
 
-  // tslint:disable-next-line: typedef
   async uploadFile() {
     this.FileholderService.setfile(this.fileToUpload);
     this.restservice.parseTable(this.fileToUpload).subscribe((data) => {
-      // this.results = data[0].data;
+     
       this.data = data;
+      this.results = this.data[0].data;
       console.log("Data: ", this.data);
       console.log("Results: ", this.results);
 
