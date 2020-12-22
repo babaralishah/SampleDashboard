@@ -74,6 +74,7 @@ export class MainComponent implements OnInit {
   }
 
   async uploadFile() {
+    if(this.fileToUpload){
     this.FileholderService.setfile(this.fileToUpload);
     this.restservice.parseTable(this.fileToUpload).subscribe((data) => {
      
@@ -84,6 +85,7 @@ export class MainComponent implements OnInit {
 
       // this.router.navigateByUrl('/Visualization');
     });
+  }
 
     // Calling service for firebase
 

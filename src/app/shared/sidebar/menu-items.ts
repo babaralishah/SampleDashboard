@@ -34,7 +34,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
   {
-    path: "/component/agent",
+    path: "/agent",
     title: "Agent",
     icon: "fa fa-users",
     class: "",
@@ -42,7 +42,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
   {
-    path: "/component/inventory",
+    path: "/inventory",
     title: "Inventory",
     icon: "fas fa-file-alt",
     class: "",

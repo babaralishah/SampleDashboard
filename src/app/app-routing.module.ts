@@ -12,6 +12,7 @@ import { VisualizationComponent } from "./component/maincomponent/visualization/
 import { InventoryComponent } from "./component/inventory/inventory.component";
 import { AddInventoryComponent } from "./component/inventory/add-inventory/add-inventory.component";
 import { AddAgentsComponent } from "./component/agent/add-agents/add-agents.component";
+import { AgentComponent } from "./component/agent/agent.component";
 
 export const Approutes: Routes = [
   {
@@ -51,45 +52,46 @@ export const Approutes: Routes = [
         component: SignupComponent,
       },
       {
-        path: 'agent',
+        path: "agent",
         children: [
           {
-            path: '',
-            component: MainComponent,
+            path: "",
+            component: AgentComponent,
             data: {
-              title: 'Agents',
-            }
+              title: "Agents",
+            },
           },
           {
-            path: 'add-agent',
+            path: "add-agent",
             component: AddAgentsComponent,
             data: {
-              title: 'Add Agent',
-            }
-          }
+              title: "Add Agent",
+            },
+          },
         ],
       },
       {
-        path: 'inventory',
+        path: "inventory",
         children: [
           {
-            path: '',
+            path: "",
             component: InventoryComponent,
             data: {
-              title: 'Inventory Management',
-            }
+              title: "Inventory Management",
+            },
           },
           {
-            path: 'add-inventory',
+            path: "add-inventory",
             component: AddInventoryComponent,
             data: {
-              title: 'Add Inventory',
-            }
-          }
-        ]
+              title: "Add Inventory",
+            },
+          },
+        ],
       },
     ],
   },
+  
   {
     path: "**",
     redirectTo: "/dashboard",
