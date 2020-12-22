@@ -12,12 +12,12 @@ export class IsLoginGuard {
     private authService: AuthenticationService
   ) {}
 
-  // async canActivate():boolean {
-  //   const token = await this.authService.getToken();
-  //   if (!token) {
-  //     this.router.navigateByUrl("/");
-  //   } else {
-  //     return true;
-  //   }
-  // }
+  async canActivate() {
+    const token = await this.authService.getToken();
+    if (!token) {
+      this.router.navigateByUrl("/");
+    } else {
+      return true;
+    }
+  }
 }

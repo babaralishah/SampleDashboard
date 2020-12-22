@@ -1,5 +1,6 @@
 // import * as $ from 'jquery';
 import { BrowserModule } from '@angular/platform-browser';
+import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   CommonModule,
@@ -54,7 +55,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HttpClientModule,
 	PerfectScrollbarModule,
     NgbModule,
-    RouterModule.forRoot(Approutes, { useHash: false })
+    RouterModule.forRoot(Approutes, { useHash: false }),
+    ToastrModule.forRoot()
   ],
   providers: [
     {

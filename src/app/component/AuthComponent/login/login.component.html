@@ -6,18 +6,27 @@
                     <span class="lstick"></span>Login!
                 </h4>
                 <hr class="divider">
-                <form>
+                <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
                     <div class="row">
                         <div class="col-7">
                             <div class="form-group">
-                                <label>Full Name</label>
-                                <input type="text" class="form-control" required />
+                                <label>Email</label>
+                                <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" type="email" name="email" formControlName="email" placeholder="Email address" />
+                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback text-left">
+                                    <div *ngIf="f.email.errors.required">Email is required</div>
+                                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-7">
                             <div class="form-group">
-                                <label>Email</label>
-                                <input type="text" class="form-control" required />
+                                <label>Password</label>
+                                <input type="password" class="form-control" type="password" formControlName="password" placeholder="Password" required="" class="" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback text-left">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

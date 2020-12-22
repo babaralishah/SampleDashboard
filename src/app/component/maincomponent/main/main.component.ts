@@ -48,7 +48,6 @@ export class MainComponent implements OnInit {
     this.isFileSelected = false;
     this.isAlgoSelected = false;
     this.isPrediction = false;
-    this.uploadFile();
   }
   performAlgoSelection() {
     this.isPreProcess = false;
@@ -71,9 +70,12 @@ export class MainComponent implements OnInit {
     console.log(
       "I am 'handleFileInput Function ': \"File dragged but not uploaded yet\""
     );
+    this.uploadFile();
   }
 
-  async uploadFile() {
+  uploadFile() {
+    console.log('upload func');
+    
     if(this.fileToUpload){
     this.FileholderService.setfile(this.fileToUpload);
     this.restservice.parseTable(this.fileToUpload).subscribe((data) => {

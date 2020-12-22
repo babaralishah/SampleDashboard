@@ -5,7 +5,6 @@ import { HomeComponent } from "./component/maincomponent/home/home.component";
 import { MainComponent } from "./component/maincomponent/main/main.component";
 import { IsLoginGuard } from "../app/Services/Guards/islogin.guard";
 import { RedirectLoginGuard } from "../app/Services/Guards/redirectlogin.guard";
-
 import { FullComponent } from "./layouts/full/full.component";
 import { UserProfileComponent } from "./component/user-profile/user-profile.component";
 import { VisualizationComponent } from "./component/maincomponent/visualization/visualization.component";

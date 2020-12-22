@@ -11,12 +11,12 @@ import * as jwt_decode from 'jwt-decode';
 export class RedirectLoginGuard {
   constructor(private router: Router, private authService: AuthenticationService) {}
 
-  // async canActivate() {
-  //   const token = await this.authService.getToken();
-  //   if (token) {
-  //     this.router.navigateByUrl('/profile');
-  // } else {
-  //     return true;
-  //   }
-  // }
+  async canActivate() {
+    const token = await this.authService.getToken();
+    if (token) {
+      this.router.navigateByUrl('/profile');
+  } else {
+      return true;
+    }
+  }
 }

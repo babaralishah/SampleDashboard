@@ -28,6 +28,7 @@
     "moment": "^2.27.0",
     "ng2-charts": "^2.2.5",
     "ngx-perfect-scrollbar": "6.1.0",
+    "ngx-toastr": "^13.2.0",
     "node-sass": "^4.14.1",
     "rxjs": "^6.5.4",
     "rxjs-compat": "^6.5.2",
