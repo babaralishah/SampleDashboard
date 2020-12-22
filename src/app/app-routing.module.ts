@@ -9,6 +9,9 @@ import { RedirectLoginGuard } from "../app/Services/Guards/redirectlogin.guard";
 import { FullComponent } from "./layouts/full/full.component";
 import { UserProfileComponent } from "./component/user-profile/user-profile.component";
 import { VisualizationComponent } from "./component/maincomponent/visualization/visualization.component";
+import { InventoryComponent } from "./component/inventory/inventory.component";
+import { AddInventoryComponent } from "./component/inventory/add-inventory/add-inventory.component";
+import { AddAgentsComponent } from "./component/agent/add-agents/add-agents.component";
 
 export const Approutes: Routes = [
   {
@@ -46,6 +49,44 @@ export const Approutes: Routes = [
         path: "Signup",
         // canActivate: [IsLoginGuard],
         component: SignupComponent,
+      },
+      {
+        path: 'agent',
+        children: [
+          {
+            path: '',
+            component: MainComponent,
+            data: {
+              title: 'Agents',
+            }
+          },
+          {
+            path: 'add-agent',
+            component: AddAgentsComponent,
+            data: {
+              title: 'Add Agent',
+            }
+          }
+        ],
+      },
+      {
+        path: 'inventory',
+        children: [
+          {
+            path: '',
+            component: InventoryComponent,
+            data: {
+              title: 'Inventory Management',
+            }
+          },
+          {
+            path: 'add-inventory',
+            component: AddInventoryComponent,
+            data: {
+              title: 'Add Inventory',
+            }
+          }
+        ]
       },
     ],
   },
