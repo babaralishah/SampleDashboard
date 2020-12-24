@@ -20,7 +20,8 @@ export class LoginComponent implements OnInit {
     public formBuilder: FormBuilder, // Creating an instance of Formbuilder
     public authService: AuthenticationService, // Instance of Authentication services created in front end
     public router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -61,18 +62,25 @@ export class LoginComponent implements OnInit {
         const msg = data.message;
         const token = data.token;
         const email = this.loginForm.value.email;
-        // this.toastr.success(msg, "Success", {
-        //   timeOut: 5000,
-        // });
+        if(!data.success){
+          this.toastr.error(data.status, "Error", {
+            timeOut: 5000,
+          });
+          return;
+        }
+        
+        this.toastr.success(msg, "Success", {
+          timeOut: 5000,
+        });
         this.authService.setToken(token);
-        this.router.navigate(["/profile", email]);
+        this.router.navigate(["/Profile"]);
       },
       (error) => {
-        console.error(error.error.message);
+        console.error(error);
         this.errorMessage = error;
-        // this.toastr.error(error.error.message, "Error", {
-        //   timeOut: 5000,
-        // });
+        this.toastr.error(error.error.message, "Error", {
+          timeOut: 5000,
+        });
       }
     );
   }

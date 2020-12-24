@@ -1,48 +1,66 @@
-<div class="row">
-    <div class="col-md-8 offset-md-2">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title mb-4">
-                    <span class="lstick"></span>Sign Up!
-                </h4>
-                <hr class="divider">
-                <form>
-                    <div class="row">
-                        <div class="col-sm-7">
-                            <div class="form-group">
-                                <label>Full Name</label>
-                                <input type="text" class="form-control" required />
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">
+                        <span class="lstick"></span>Sign Up!
+                    </h4>
+                    <hr class="divider">
+                    <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                    <label>username</label>
+                                    <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" formControlName="username" />
+                                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                        <div *ngIf="f.username.errors.required">username is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" formControlName="email" />
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">Email is required</div>
+                                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" (keyup)="password($event.target.value, 'Pass')" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" formControlName="password" />
+                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                        <div *ngIf="f.password.errors.required">Password is required</div>
+                                        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-7">
+                                <div class="form-group">
+                                    <label>Confirm Password</label>
+                                    <input type="password" class="form-control" (keyup)="password($event.target.value, 'Conf')" [ngClass]="{ 'is-invalid': submitted && f.confirm_password.errors }" formControlName="confirm_password" />
+
+                                    <div *ngIf="submitted && f.confirm_password.errors" class="invalid-feedback">
+                                        <div *ngIf="f.confirm_password.errors.required">Confirm Password is required</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-7">
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" class="form-control" required />
-                            </div>
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input type="password" class="form-control" required />
-                            </div>
-                        </div>
-                        <div class="col-7">
-                            <div class="form-group">
-                                <label>Confirm Password</label>
-                                <input type="password" class="form-control" required />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-2">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">
+                        <p>Already Registered? <a routerLink="/Login">Login!</a></p>
+                        <div class="row mt-4">
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">
                       SignUp
                     </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

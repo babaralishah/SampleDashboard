@@ -15,14 +15,14 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class AuthenticationService {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
-  private readonly url = 'https://shaisecommercestore.herokuapp.com/api'; // environment.url;
+  // private readonly url = 'https://fyp-auth-backend.herokuapp.com/api'; // environment.url;
+  private readonly url = 'http://localhost:4000/api';
 
   constructor(private httpClient: HttpClient, public router: Router) {}
   ///////// Function to Register the new user /////////////
   register(user: any): Observable<any> {
     return this.httpClient
-      .post(`${this.url}/users/signup`, user)
-      .pipe(catchError(this.handleError));
+      .post(`${this.url}/users/signup`, user);
   }
 
   // create service to get and set the token to local storage
@@ -33,6 +33,8 @@ export class AuthenticationService {
   }
   getDecodedToken(token: string): any {
     try {
+      // console.log(jwt_decode(token));
+      
       return jwt_decode(token);
     } catch (Error) {
       console.log(Error);

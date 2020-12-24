@@ -5,6 +5,21 @@
     font-size: 24px;
 }
 
+.predict-select {
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 20%;
+}
+
+.inputs2 {
+    margin-top: -15px;
+    color: #333;
+    background-color: #fff;
+    border-radius: 34px;
+    width: 400%;
+    margin-left: 33px;
+}
+
 .chart {
     /* max-width: 100%;
     height: auto;
@@ -18,17 +33,24 @@
     margin-left: 450px;
 }
 
-.btn2 {
-    width: 120px;
+.btn {
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 150px;
+    font-size: 14px;
+    background-color: #7460ee;
+    color: white;
+    border: 1px solid transparent;
 }
 
-.btn {
+
+/* .btn {
     padding: 5px 12px;
     background-color: teal;
     color: #f1f1f1;
     border-radius: 0;
     transition: .2s;
-}
+} */
 
 .navbar-icon-top .navbar-nav .nav-link>.fa>.badge {
     font-size: 0.75rem;

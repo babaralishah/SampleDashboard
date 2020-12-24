@@ -10,6 +10,7 @@ import { FileholderService } from 'src/app/Services/fileholder.service';
 export class VisualizationComponent implements OnInit {
   name1:any;
   name2:any;
+  yearsOfPrediction = [{ year: "5" }, { year: "10" }, { year: "15" }, { year: "20" }];
   // chartForm: FormGroup;
   chartname: any;
   chart: any;
@@ -68,6 +69,8 @@ export class VisualizationComponent implements OnInit {
       .subscribe
       (data => {
         this.backendData = data;
+        console.log(this.backendData);
+        
         // var obj = JSON.parse(this.backendData);
         // console.log('Backend Data Json parse: ', this.backendData[0]);
       },
@@ -79,9 +82,12 @@ export class VisualizationComponent implements OnInit {
   }
 
   setName1(name:any){
+    console.log(name);
+    
     this.name1 = name;
   }
   setName2(name:any){
+    console.log(name);
     this.name2 = name;
   }
   checkChart(chart:any) {

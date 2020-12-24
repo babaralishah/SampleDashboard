@@ -11,13 +11,13 @@ export class RestService {
     private http: HttpClient) { }
 
   url = 'https://fyp-prediction-backend.herokuapp.com';
-  backendAddress = 'http://127.0.0.1:5000/output/';
-  backendAddress1 = 'http://127.0.0.1:5000/output1/';
-  backendAddress2 = 'http://127.0.0.1:5000/output2/';
+  predictionPerform = 'http://127.0.0.1:5000/predictionPerform/';
+  columnsNames = 'http://127.0.0.1:5000/columnsNames/';
+  dataFileDetails = 'http://127.0.0.1:5000/dataFileDetails/';
 
   // tslint:disable-next-line: typedef
   readResults() {
-    return this.http.get(this.backendAddress1);
+    return this.http.get(this.columnsNames);
     // return this.http.get(`${this.url}/output1`);
     console.log('hello');
   }
@@ -27,7 +27,7 @@ export class RestService {
     const formData: FormData = new FormData();
     formData.append('name1', credentials.name1);
     formData.append('name2', credentials.name2);
-    return this.http.post(this.backendAddress2, formData);
+    return this.http.post(this.dataFileDetails, formData);
     return this.http.get(`${this.url}/output2`);
   }
 
@@ -36,7 +36,7 @@ export class RestService {
     const formData: FormData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
     console.log('File Name: ', fileToUpload.name); // and File and its name: \' ' + fileToUpload + fileToUpload.name);
-    return this.http.post(this.backendAddress, formData); // ,{  responseType: 'arraybuffer' | 'blob' | 'json' | 'text' });
+    return this.http.post(this.predictionPerform, formData); // ,{  responseType: 'arraybuffer' | 'blob' | 'json' | 'text' });
     return this.http.get(`${this.url}/output`);
   }
 

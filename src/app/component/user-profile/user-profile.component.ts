@@ -11,6 +11,7 @@ import { AuthenticationService } from 'src/app/Services/Authentication/authentic
 export class UserProfileComponent implements OnInit {
   tokendata: any;
   token: any;
+  userName: any;
 
   constructor(
     public formBuilder: FormBuilder, // Creating an instance of Formbuilder
@@ -24,8 +25,13 @@ export class UserProfileComponent implements OnInit {
 
   async tokenization() {
     this.token = await this.authService.getToken();
+    // console.log(this.token);
+    
     const decodedToken = await this.authService.getDecodedToken(this.token);
-    this.tokendata = decodedToken?.data;
+    this.tokendata = decodedToken;
     console.log(this.tokendata);
+    this.userName = this.tokendata.name;
+    // console.log(this.userName);
+    
   }
 }

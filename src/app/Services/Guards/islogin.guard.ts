@@ -15,7 +15,7 @@ export class IsLoginGuard {
   async canActivate() {
     const token = await this.authService.getToken();
     if (!token) {
-      this.router.navigateByUrl("/");
+      this.router.navigateByUrl("/Login");
     } else {
       return true;
     }

@@ -20,7 +20,7 @@ export const Approutes: Routes = [
     children: [
       {
         path: "",
-        // canActivate: [IsLoginGuard],
+        canActivate: [IsLoginGuard],
         redirectTo: "/dashboard",
         pathMatch: "full",
       },
@@ -36,28 +36,23 @@ export const Approutes: Routes = [
             (m) => m.ComponentsModule
           ),
       },
-      { path: "Main", component: MainComponent },
-      { path: "Visualization", component: VisualizationComponent },
-      { path: "Home", component: HomeComponent },
-      { path: "Profile", component: UserProfileComponent },
-      {
-        path: "Login",
-        // canActivate: [RedirectLoginGuard],
-        component: LoginComponent,
-      },
-      {
-        path: "Signup",
-        // canActivate: [IsLoginGuard],
-        component: SignupComponent,
-      },
+      { path: "Main",
+      canActivate: [IsLoginGuard],component: MainComponent },
+      { path: "Visualization",
+      canActivate: [IsLoginGuard], component: VisualizationComponent },
+      { path: "Home", 
+      canActivate: [IsLoginGuard],component: HomeComponent },
+      { path: "Profile", 
+      canActivate: [IsLoginGuard],component: UserProfileComponent },
       {
         path: "agent",
+        canActivate: [IsLoginGuard],
         children: [
           {
             path: "",
             component: AgentComponent,
             data: {
-              title: "Agents",
+              title: "Unprocessed Data File",
             },
           },
           {
@@ -71,16 +66,18 @@ export const Approutes: Routes = [
       },
       {
         path: "inventory",
+        canActivate: [IsLoginGuard],
         children: [
           {
             path: "",
             component: InventoryComponent,
             data: {
-              title: "Inventory Management",
+              title: "Processed File Data",
             },
           },
           {
             path: "add-inventory",
+            canActivate: [IsLoginGuard],
             component: AddInventoryComponent,
             data: {
               title: "Add Inventory",
@@ -89,6 +86,16 @@ export const Approutes: Routes = [
         ],
       },
     ],
+  },
+  {
+    path: "Login",
+    canActivate: [RedirectLoginGuard],
+    component: LoginComponent,
+  },
+  {
+    path: "Signup",
+    canActivate: [RedirectLoginGuard],
+    component: SignupComponent,
   },
 
   {
