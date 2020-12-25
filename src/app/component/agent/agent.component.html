@@ -17,15 +17,15 @@
         <div class="table-responsive">
             <table class="table vm no-th-brd pro-of-month mb-0 v-middle">
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Full Name</th>
+                    <tr *ngFor="let columnName of backendData">
+                        <th>{{columnName}}</th>
+                        <!-- <th>Full Name</th>
                         <th>Conatct #</th>
                         <th>Location</th>
                         <th>Email Address</th>
                         <th>Access</th>
                         <th>Status</th>
-                        <th>Operations</th>
+                        <th>Operations</th> -->
                     </tr>
                 </thead>
                 <tbody>
