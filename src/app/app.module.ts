@@ -1,4 +1,5 @@
 // import * as $ from 'jquery';
+import { ChartsModule } from 'ng2-charts';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserModule } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
@@ -49,6 +50,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     VisualizationComponent
   ],
   imports: [
+    ChartsModule,
     NgSelectModule,
     CommonModule,
     BrowserModule,

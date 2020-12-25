@@ -9,7 +9,7 @@
                 <div class="col-3 btn2">
                     <br>
 
-                    <ng-select class="ng-select" [items]="backendData" bindLabel="year" bindValue="year" placeholder="Years to Predict" (change)="setName1($event)">
+                    <ng-select class="ng-select" [items]="backendData" bindLabel="year" bindValue="year" placeholder="Select predictor" (change)="setName1($event)">
                     </ng-select>
                     <!-- <button (click)="setName1(data)" class="btn btn-primary" *ngFor="let data of backendData">{{data}}</button> -->
                 </div>
@@ -24,7 +24,6 @@
 
                     <ng-select class="ng-select" [items]="backendData" bindLabel="year" bindValue="year" placeholder="Years to Predict" (change)="setName2($event)">
                     </ng-select>
-                    <!-- <button (click)="setName2(data)" class="btn btn-primary" *ngFor="let data of backendData">{{data}}</button> -->
                 </div>
             </div>
         </div>
@@ -58,67 +57,153 @@
         </ng-select>
 
     </div>
+    <br>
+    <br>
     <div class="row">
-        <div class="col-md-5 col-sm-6" *ngIf="barChartData.length>0 && [chartname] == 'bar'">
-            <!-- Bar-chart --><br><br>
-            <h1><b>Bar Chart</b></h1><br><br>
-            <div class="chart" style="display: block">
-                <!-- <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [legend]="barChartLegend" [chartType]="barChartType"></canvas> -->
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"><span class="lstick"></span>{{chartname}}</h4>
+                    <div>
+
+                        <div class="" *ngIf="[chartname] == 'bar'">
+                            <!-- <h1><b>Bar Chart</b></h1><br><br> -->
+                            <div>
+                                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [legend]="barChartLegend" [chartType]="barChartType"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="" *ngIf="[chartname] == 'line'">
+                            <!-- Line chart -->
+                            <!-- <h1><b>Line Chart</b></h1><br><br> -->
+                            <div class="">
+                                <canvas baseChart [data]="lineChartData" [labels]="lineChartLabels" [chartType]="lineChartType"></canvas>
+                            </div>
+                        </div>
+                        <!-- </div>
+    <div class="row"> -->
+                        <div class="" *ngIf="[chartname] == 'bubble'">
+                            <!-- Bubble chart -->
+                            <!-- <h1><b>Bubble Chart</b></h1><br><br> -->
+                            <div class="">
+                                <canvas baseChart [data]="bubbleChartData" [labels]="bubbleChartLabels" [chartType]="bubbleChartType"></canvas>
+                            </div>
+                        </div>
+                        <!-- </div>
+    <div class="row"> -->
+                        <div class="" *ngIf="[chartname] == 'polar'">
+                            <!-- Polar chart -->
+                            <!-- <h1><b>Polar Chart</b></h1><br><br> -->
+                            <div>
+                                <canvas baseChart [data]="polarChartData" [labels]="polarChartLabels" [chartType]="polarChartType"></canvas>
+                            </div>
+                        </div>
+                        <!-- </div>
+    <div class="row"> -->
+                        <div class="" *ngIf="[chartname] == 'doughnut'">
+                            <!-- Doughnut chart -->
+                            <!-- <h1><b>Doughnut Chart</b></h1><br><br> -->
+                            <div>
+                                <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"></canvas>
+                            </div>
+                        </div>
+                        <!-- </div>
+
+    <div class="row"> -->
+                        <div class="" *ngIf="[chartname] == 'pie'">
+                            <!-- Pie chart -->
+                            <!-- <h1><b>Pie Chart</b></h1><br><br> -->
+                            <div>
+                                <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"></canvas>
+                            </div>
+                        </div>
+                        <!-- </div>
+    <div class="row"> -->
+                        <div class="" *ngIf="[chartname] == 'radar'">
+                            <!-- Radar chart -->
+                            <!-- <h1><b>Radar Chart</b></h1><br><br> -->
+                            <div>
+                                <canvas baseChart [datasets]="radarChartData" [labels]="radarChartLabels" [chartType]="radarChartType"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table vm font-14">
+                        <tr>
+                            <td class="b-0">Mobile</td>
+                            <td class="text-right font-medium b-0">38.5%</td>
+                        </tr>
+                        <tr>
+                            <td>Tablet</td>
+                            <td class="text-right font-medium">30.8%</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
+
+
+        <!-- <div class="col-md-5 col-sm-6" *ngIf="barChartData.length>0 && [chartname] == 'bar'">
+            <h1><b>Bar Chart</b></h1><br><br>
+            <div class="chart" style="display: block">
+                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [legend]="barChartLegend" [chartType]="barChartType"></canvas>
+            </div>
+        </div> -->
+        <!-- </div>
+    <div class="row"> -->
         <div class="col-md-5 col-sm-6" *ngIf="[chartname] == 'line'">
             <!-- Line chart --><br><br>
             <h1><b>Line Chart</b></h1><br><br>
             <div class="chart" style="display: block">
-                <!-- <canvas baseChart [data]="lineChartData" [labels]="lineChartLabels" [chartType]="lineChartType"></canvas> -->
+                <canvas baseChart [data]="lineChartData" [labels]="lineChartLabels" [chartType]="lineChartType"></canvas>
             </div>
         </div>
-    </div>
-    <div class="row">
+        <!-- </div>
+    <div class="row"> -->
         <div class="col-md-5 col-sm-6" *ngIf="[chartname] == 'bubble'">
             <!-- Bubble chart --><br><br>
             <h1><b>Bubble Chart</b></h1><br><br>
             <div class="chart" style="display: block">
-                <!-- <canvas baseChart [data]="bubbleChartData" [labels]="bubbleChartLabels" [chartType]="bubbleChartType"></canvas> -->
+                <canvas baseChart [data]="bubbleChartData" [labels]="bubbleChartLabels" [chartType]="bubbleChartType"></canvas>
             </div>
         </div>
-    </div>
-    <div class="row">
+        <!-- </div>
+    <div class="row"> -->
         <div class="col-md-5 col-sm-6" *ngIf="[chartname] == 'polar'">
             <!-- Polar chart --><br><br>
             <h1><b>Polar Chart</b></h1><br><br>
             <div class="chart" style="display: block">
-                <!-- <canvas baseChart [data]="polarChartData" [labels]="polarChartLabels" [chartType]="polarChartType"></canvas> -->
+                <canvas baseChart [data]="polarChartData" [labels]="polarChartLabels" [chartType]="polarChartType"></canvas>
             </div>
         </div>
-    </div>
-    <div class="row">
+        <!-- </div>
+    <div class="row"> -->
         <div class="col-md-5 col-sm-6" *ngIf="[chartname] == 'doughnut'">
             <!-- Doughnut chart --><br><br>
             <h1><b>Doughnut Chart</b></h1><br><br>
             <div class="chart" style="display: block">
-                <!-- <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"></canvas> -->
+                <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"></canvas>
             </div>
         </div>
-    </div>
+        <!-- </div>
 
-    <div class="row">
+    <div class="row"> -->
         <div class="col-md-5 col-sm-6" *ngIf="[chartname] == 'pie'">
             <!-- Pie chart --><br><br>
             <h1><b>Pie Chart</b></h1><br><br>
             <div class="chart" style="display: block">
-                <!-- <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"></canvas> -->
+                <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"></canvas>
             </div>
         </div>
-    </div>
-    <div class="row">
+        <!-- </div>
+    <div class="row"> -->
         <div class="col-md-5 col-sm-6" *ngIf="[chartname] == 'radar'">
             <!-- Radar chart --><br><br>
             <h1><b>Radar Chart</b></h1><br><br>
             <div class="chart" style="display: block">
-                <!-- <canvas baseChart [datasets]="radarChartData" [labels]="radarChartLabels" [chartType]="radarChartType"></canvas> -->
+                <canvas baseChart [datasets]="radarChartData" [labels]="radarChartLabels" [chartType]="radarChartType"></canvas>
             </div>
         </div>
     </div>
