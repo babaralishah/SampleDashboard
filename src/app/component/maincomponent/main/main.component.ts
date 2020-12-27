@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { RestService } from "src/app/Services/rest.service";
 import { FileholderService } from "src/app/Services/fileholder.service";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { NgSelectModule } from "@ng-select/ng-select";
 @Component({
   selector: "app-main",
   templateUrl: "./main.component.html",
@@ -9,13 +11,26 @@ import { FileholderService } from "src/app/Services/fileholder.service";
 export class MainComponent implements OnInit {
   general_search: any;
   data: any;
-
   fileToUpload: any;
   results: any;
+  preProcessTech: any;
   isPreProcess: boolean = false;
   isAlgoSelected: boolean = false;
   isPrediction: boolean = false;
   isFileSelected: boolean = true;
+  backendData: any;
+
+  selectedCar: any;
+
+  cars = [
+    { id: 1, name: "Volvo" },
+    { id: 2, name: "Saab" },
+    { id: 3, name: "Opel" },
+    { id: 4, name: "Audi" },
+  ];
+  isTraining: boolean = false;
+  selectedAlgorithm: any;
+
   constructor(
     public restservice: RestService,
     private FileholderService: FileholderService
@@ -26,6 +41,8 @@ export class MainComponent implements OnInit {
     "Train data Accuracy",
     // "TrainingTime",
   ];
+
+  headers2 = ["Technique", "Time Taken"];
   flag = false;
   stringifiedData: any;
   parsedJson: any;
@@ -36,14 +53,22 @@ export class MainComponent implements OnInit {
   receivedFile: any; //  = null;
   todaydate: any;
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.preprocessingDataFile();
+  }
 
-  backToFileInput(){
+  backToFileInput() {
     this.isFileSelected = true;
     this.isPreProcess = false;
   }
 
+  performTraining() {
+    this.isTraining = true;
+    this.isAlgoSelected = false;
+  }
+
   performPreprocessing() {
+    this.preprocessingDataFile();
     this.isPreProcess = true;
     this.isFileSelected = false;
     this.isAlgoSelected = false;
@@ -53,16 +78,24 @@ export class MainComponent implements OnInit {
     this.isPreProcess = false;
     this.isPrediction = false;
     this.isAlgoSelected = true;
+    this.isTraining = false;
+    this.restservice.gettrainingTime().subscribe((data) => {
+      console.log(data);
+    });
   }
-  performPrediction(){
+  performPrediction() {
+    console.log("prediction");
+
     this.isPreProcess = false;
     this.isAlgoSelected = false;
     this.isPrediction = true;
+    this.isTraining = false;
   }
-  backToPrediction(){
+  backToPrediction() {
     this.isPreProcess = false;
-    this.isAlgoSelected = true;
+    // this.isAlgoSelected = true;
     this.isPrediction = false;
+    this.isTraining = true;
   }
 
   handleFileInput(files: FileList) {
@@ -73,21 +106,46 @@ export class MainComponent implements OnInit {
     this.uploadFile();
   }
 
-  uploadFile() {
-    console.log('upload func');
-    
-    if(this.fileToUpload){
-    this.FileholderService.setfile(this.fileToUpload);
-    this.restservice.parseTable(this.fileToUpload).subscribe((data) => {
-     
-      this.data = data;
-      this.results = this.data[0].data;
-      console.log("Data: ", this.data);
-      console.log("Results: ", this.results);
+  preprocessingDataFile() {
+    this.restservice.preprocessingDataFiles().subscribe(
+      (data) => {
+        this.data = data;
 
-      // this.router.navigateByUrl('/Visualization');
-    });
+        setTimeout(() => {
+          this.preProcessTech = this.data[0].data;
+        }, 2000);
+        console.log(this.preProcessTech);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
+
+  singlePrediction(algorithm: any) {
+    this.selectedAlgorithm = algorithm;
+    this.restservice
+      .singlePredictions({ algorithm: algorithm })
+      .subscribe((data) => {
+        console.log(data);
+      });
+    // console.log(algorithm);
+  }
+
+  uploadFile() {
+    console.log("upload func");
+
+    if (this.fileToUpload) {
+      this.FileholderService.setfile(this.fileToUpload);
+      this.restservice.parseTable(this.fileToUpload).subscribe((data) => {
+        this.data = data;
+        this.results = this.data[0].data;
+        console.log("Data: ", data);
+        console.log("Results: ", this.results);
+
+        // this.router.navigateByUrl('/Visualization');
+      });
+    }
 
     // Calling service for firebase
 

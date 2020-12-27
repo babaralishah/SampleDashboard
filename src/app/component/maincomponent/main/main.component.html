@@ -10,7 +10,7 @@
             </div>
             <br><br>
             <div class="row">
-                <button class="btn btn-primary" (click)="performPreprocessing()">Proceed Next for Preprocessing</button>
+                <button class="btn btn-primary" (click)="performPreprocessing()">Proceed Next for <b>Cleansing/Preprocessing</b></button>
             </div>
         </div>
         <div class="col-1" *ngIf="isFileSelected">
@@ -33,46 +33,34 @@
             <h2>Preprocessing</h2>
         </div>
         <div class="col-12">
-            <br>Performing Preprocessing....
+            <br>Data File Cleansing been Performing....
             <br><br>
         </div>
-        <table class="table table-striped">
+        <table id="results" class="table table-striped">
             <thead>
                 <tr>
-                    <th>
-                        Preprocess Tech
-                    </th>
-                    <th>Time taken</th>
+                    <th>preprocesstechnique</th>
+                    <th>preprocesstime</th>
                 </tr>
 
-                <tr>
-                    <td>
-                        Normalization
-                    </td>
-                    <td>
-                        3 sec
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Label Encoding
-                    </td>
-                    <td>
-                        2 sec
-                    </td>
+                <tr *ngFor="let row of preProcessTech">
+                    <td>{{row.preprocesstechnique}}</td>
+                    <td>{{row.preprocesstime}}</td>
                 </tr>
             </thead>
+
         </table>
+
         <br><br>
 
-        <div class="col-3">
-            <button class="btn btn-primary" (click)="performAlgoSelection()"> Proceed next for Algo selection</button>
+        <div class="col-3" *ngIf="preProcessTech">
+            <button class="btn btn-primary" (click)="performAlgoSelection()"> Proceed for <b>Algorithm Selection</b></button>
         </div>
-        <div class="col-3">
-            <button class="btn btn-primary pull-right" (click)="backToFileInput()">back</button>
+        <div class="col-3" *ngIf="preProcessTech">
+            <button class="btn btn-primary" (click)="backToFileInput()">back</button>
         </div>
     </div>
-    <div *ngIf="isAlgoSelected ">
+    <div *ngIf="isAlgoSelected">
 
         <h2>Algorithms</h2>
         <br>
@@ -81,61 +69,122 @@
 
         <div class="row">
             <div class="col-12">
-                <br>
+
+                <div *ngFor="let row of results">
+                    <button class="btn3 btn-primary" (click)="singlePrediction(row.Algorithm)">{{row.Algorithm}}</button>
+                    <br>
+                </div>
+
                 <table class="table table-striped ">
                     <thead>
                         <tr>
                             <th>Algorithm</th>
-                            <th>Training Time</th>
+                            <!-- <th>Training Time</th> -->
                         </tr>
 
-                        <tr *ngFor="let row of results ">
+                        <!-- <tr *ngFor="let row of results">
                             <td>{{row.Algorithm}}</td>
                             <td>{{row.TrainingTime}}</td>
-                        </tr>
+                        </tr> -->
                     </thead>
 
                 </table>
             </div>
         </div>
     </div>
-    <div class="row" *ngIf="isAlgoSelected ">
-        <!-- <div class="col-6"> -->
-        <!-- <iframe src="https://www.w3schools.com" title="W3Schools Free Online Web Tutorials"></iframe> -->
-        <!-- <iframe src="assets\FMEL_Dataset.csv" title="W3Schools Free Online Web Tutorials"></iframe> -->
-        <!-- <iframe src="https://www.thenews.com.pk/assets/front/pdf/PPP_Manifesto_2018.pdf" width="1280" height="650"></iframe> -->
-        <!-- <iframe src="https://media.istockphoto.com/photos/pakistan-monument-islamabad-picture-id535695503?k=6&m=535695503&s=612x612&w=0&h=uP8aDK4xlfjk3kEiyr9wwUiuh80UwAiICweFpiBDosk=" width="1280" height="650"></iframe> -->
-        <!-- </div> -->
+
+
+    <div class="row" *ngIf="isAlgoSelected && results">
         <div class="col-3">
-            <button class="btn btn-primary" (click)="performPrediction() "> Proceed for Prediction</button></div>
+            <button class="btn btn-primary" (click)="performTraining()"> Proceed for <b>Model Training</b></button></div>
 
         <div class="col-3">
-            <button class="btn btn-primary pull-right" (click)="performPreprocessing()">back</button>
+            <button class="btn btn-primary" (click)="performPrediction()"> Proceed for <b>All Model Training</b></button>
+        </div>
+        <!-- <button class="btn btn-primary" (click)="performPrediction()"> Proceed next for <b>Prediction</b></button></div> -->
+
+        <div class="col-3">
+            <button class="btn btn-primary" (click)="performPreprocessing()">back</button>
         </div>
     </div>
-    <!-- Prediction Results in the Data Table -->
-    <div class="row" *ngIf="isPrediction">
-        <table id="results" class="table table-striped">
-            <thead>
-                <tr>
-                    <th *ngFor="let column of headers1">
-                        {{column}}
-                    </th>
-                </tr>
 
-                <tr *ngFor="let row of results">
-                    <td *ngFor="let col of headers1">
-                        {{row[col]}}
-                    </td>
-                </tr>
-            </thead>
+</div>
 
-        </table>
-        <br>
-        <button class="btn btn-primary pull-right" (click)="backToPrediction()">back</button>
-        <br>
+<div *ngIf="isTraining">
+
+    <h2>Model Training</h2>
+    <br>
+
+    <!-- <h4>Select the Algorithm for Prediction</h4> -->
+
+    <div class="row">
+        <div class="col-12">
+            <br>
+            <p>model is been under training</p>
+            <br>
+            <table id="results" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th *ngFor="let column of headers1">
+                            {{column}}
+                        </th>
+                    </tr>
+
+                    <tr *ngFor="let row of results">
+                        <td *ngFor="let col of headers1">
+                            <span *ngIf="row === '{{selectedAlgorithm}}'"></span>{{row[col]}}
+                        </td>
+                    </tr>
+                </thead>
+
+            </table>
+
+        </div>
     </div>
-    <div>
+
+    <div class="row" *ngIf="isTraining">
+        <div class="col-3">
+            <!-- <button class="btn btn-primary" (click)="performTraining()"> Proceed for <b>Machine Training</b></button></div> -->
+            <button class="btn btn-primary" (click)="performPrediction()"> Proceed next for <b>Prediction</b></button></div>
+
+        <div class="col-3">
+            <button class="btn btn-primary" (click)="performAlgoSelection()">back</button>
+        </div>
     </div>
-    <!-- </div> -->
+</div>
+
+<!-- Prediction Results in the Data Table -->
+<div class="row" *ngIf="isPrediction">
+    <h2>All ML Model Training</h2>
+    <table id="results" class="table table-striped">
+        <thead>
+            <tr>
+                <th *ngFor="let column of headers1">
+                    {{column}}
+                </th>
+            </tr>
+
+            <tr *ngFor="let row of results">
+                <td *ngFor="let col of headers1">
+                    {{row[col]}}
+                </td>
+            </tr>
+        </thead>
+
+    </table>
+    <br>
+</div>
+<div class="row" *ngIf="isPrediction && results">
+    <div class="col-2">
+        <button class="btn btn-primary" (click)="backToPrediction()">back</button>
+    </div>
+
+    <div class="col-3">
+        <button class="btn btn-primary" (click)="performAlgoSelection()">back to <b>Alogrothm Selection</b></button>
+
+    </div>
+    <div class="col-3">
+        <button class="btn btn-primary" routerLink="/Visualization">Go for <b>Visualization</b></button>
+
+    </div>
 </div>
