@@ -113,8 +113,9 @@ export class MainComponent implements OnInit {
 
         setTimeout(() => {
           this.preProcessTech = this.data[0].data;
-        }, 2000);
+          
         console.log(this.preProcessTech);
+        }, 2000);
       },
       (error) => {
         console.log(error);
