@@ -21,7 +21,7 @@ export const Approutes: Routes = [
       {
         path: "",
         canActivate: [IsLoginGuard],
-        redirectTo: "/dashboard",
+        redirectTo: "/Home",
         pathMatch: "full",
       },
       {
@@ -36,14 +36,18 @@ export const Approutes: Routes = [
             (m) => m.ComponentsModule
           ),
       },
-      { path: "Main",
-      canActivate: [IsLoginGuard],component: MainComponent },
-      { path: "Visualization",
-      canActivate: [IsLoginGuard], component: VisualizationComponent },
-      { path: "Home", 
-      canActivate: [IsLoginGuard],component: HomeComponent },
-      { path: "Profile", 
-      canActivate: [IsLoginGuard],component: UserProfileComponent },
+      { path: "Main", canActivate: [IsLoginGuard], component: MainComponent },
+      {
+        path: "Visualization",
+        canActivate: [IsLoginGuard],
+        component: VisualizationComponent,
+      },
+      { path: "Home", component: HomeComponent },
+      {
+        path: "Profile",
+        canActivate: [IsLoginGuard],
+        component: UserProfileComponent,
+      },
       {
         path: "agent",
         canActivate: [IsLoginGuard],
@@ -100,6 +104,6 @@ export const Approutes: Routes = [
 
   {
     path: "**",
-    redirectTo: "/Profile",
+    redirectTo: "/Home",
   },
 ];

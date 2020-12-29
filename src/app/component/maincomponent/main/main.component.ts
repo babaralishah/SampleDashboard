@@ -124,6 +124,8 @@ export class MainComponent implements OnInit {
   }
 
   singlePrediction(algorithm: any) {
+    console.log(algorithm);
+    
     this.selectedAlgorithm = algorithm;
     this.restservice
       .singlePredictions({ algorithm: algorithm })
