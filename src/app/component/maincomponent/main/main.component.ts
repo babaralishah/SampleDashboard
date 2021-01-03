@@ -77,6 +77,8 @@ export class MainComponent implements OnInit {
     this.isPrediction = false;
   }
   performAlgoSelection() {
+    
+    this.getPrediction();
     this.isPreProcess = false;
     this.isPrediction = false;
     this.isAlgoSelected = true;
@@ -113,15 +115,17 @@ export class MainComponent implements OnInit {
       (data) => {
         this.data = data;
 
-        if(data)
-        {
-        this.getPrediction();
-      }
+      //   if(data)
+      //   {
+      //   this.getPrediction();
+      // }
         setTimeout(() => {
+          console.log(this.data[0].data);
+          
           this.preProcessTech = this.data[0].data;
 
           console.log(this.preProcessTech);
-        }, 2000);
+        }, 4000);
       },
       (error) => {
         console.log(error);
