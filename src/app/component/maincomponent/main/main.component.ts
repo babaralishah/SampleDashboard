@@ -69,6 +69,8 @@ export class MainComponent implements OnInit {
 
   performPreprocessing() {
     this.preprocessingDataFile();
+    // this.getPrediction();
+    // this.preprocessingDataFile();
     this.isPreProcess = true;
     this.isFileSelected = false;
     this.isAlgoSelected = false;
@@ -111,10 +113,14 @@ export class MainComponent implements OnInit {
       (data) => {
         this.data = data;
 
+        if(data)
+        {
+        this.getPrediction();
+      }
         setTimeout(() => {
           this.preProcessTech = this.data[0].data;
-          
-        console.log(this.preProcessTech);
+
+          console.log(this.preProcessTech);
         }, 2000);
       },
       (error) => {
@@ -125,7 +131,7 @@ export class MainComponent implements OnInit {
 
   singlePrediction(algorithm: any) {
     console.log(algorithm);
-    
+
     this.selectedAlgorithm = algorithm;
     this.restservice
       .singlePredictions({ algorithm: algorithm })
@@ -135,16 +141,28 @@ export class MainComponent implements OnInit {
     // console.log(algorithm);
   }
 
+  getPrediction() {
+    this.restservice.parseTable().subscribe((data) => {
+      this.data = data;
+      this.results = this.data[0].data;
+      console.log("Data: ", data);
+      console.log("Results: ", this.results);
+      // if (this.results) this.preprocessingDataFile();
+
+      // this.router.navigateByUrl('/Visualization');
+    });
+  }
+
   uploadFile() {
     console.log("upload func");
 
     if (this.fileToUpload) {
       this.FileholderService.setfile(this.fileToUpload);
-      this.restservice.parseTable(this.fileToUpload).subscribe((data) => {
-        this.data = data;
-        this.results = this.data[0].data;
+      this.restservice.getTheDataFiles(this.fileToUpload).subscribe((data) => {
+        // this.data = data;
+        // this.results = this.data[0].data;
         console.log("Data: ", data);
-        console.log("Results: ", this.results);
+        // console.log("Results: ", this.results);
 
         // this.router.navigateByUrl('/Visualization');
       });
