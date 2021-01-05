@@ -15,6 +15,11 @@ export class RestService {
   trainingTime = "http://127.0.0.1:5000/trainingTime/";
   singlePrediction = "http://127.0.0.1:5000/singlePrediction/";
   getTheDataFile = "http://127.0.0.1:5000/getTheDataFile/";
+  predictedFile = "http://127.0.0.1:5000/predictedFile/";
+
+  predictedFiles() {
+    return this.http.get(this.predictedFile); //,{  responseType: 'arraybuffer' | 'blob' | 'json' | 'text' });
+  }
 
   preprocessingDataFiles() {
     return this.http.get(this.preprocessingDataFile); //,{  responseType: 'arraybuffer' | 'blob' | 'json' | 'text' });

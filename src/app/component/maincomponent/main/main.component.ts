@@ -3,6 +3,7 @@ import { RestService } from "src/app/Services/rest.service";
 import { FileholderService } from "src/app/Services/fileholder.service";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { NgSelectModule } from "@ng-select/ng-select";
+import { ToastrService } from "ngx-toastr";
 @Component({
   selector: "app-main",
   templateUrl: "./main.component.html",
@@ -33,7 +34,8 @@ export class MainComponent implements OnInit {
 
   constructor(
     public restservice: RestService,
-    private FileholderService: FileholderService
+    private FileholderService: FileholderService,
+    private toastr: ToastrService
   ) {}
   headers1 = [
     "Algorithm",
@@ -57,6 +59,69 @@ export class MainComponent implements OnInit {
     // this.preprocessingDataFile();
   }
 
+  uploadFile() {
+    console.log("upload func");
+
+    if (this.fileToUpload) {
+      this.FileholderService.setfile(this.fileToUpload);
+      this.restservice.getTheDataFiles(this.fileToUpload).subscribe((data) => {
+        // this.data = data;
+        // this.results = this.data[0].data;
+        console.log("Data: ", data);
+        if (data === "true") {
+          console.log(this.fileToUpload.name);
+
+          this.toastr.success(
+            "File Received \n" + this.fileToUpload.name,
+            "Success",
+            {
+              timeOut: 3000,
+            }
+          );
+        }
+      });
+    }
+
+    // Calling service for firebase
+
+    // const obs = await this.UploadfirebaseService.uploadProfileImg(
+    //   {
+    //     file: this.fileToUpload
+    //   }
+    // );
+    // obs.subscribe(
+    //   url => {
+    //     console.log(url);
+    //     localStorage.setItem('fileUrl', JSON.stringify(url));
+    //   }
+    // );
+
+    // Calling the service to pass the data file between other components such as visualization component
+  }
+
+  preprocessingDataFile() {
+    this.restservice.preprocessingDataFiles().subscribe(
+      (data) => {
+        this.data = data;
+
+        //   if(data)
+        //   {
+        //   this.getPrediction();
+        // }
+        setTimeout(() => {
+          console.log(this.data[0].data);
+
+          this.preProcessTech = this.data[0].data;
+
+          console.log(this.preProcessTech);
+        }, 1000);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
   backToFileInput() {
     this.isFileSelected = true;
     this.isPreProcess = false;
@@ -69,15 +134,12 @@ export class MainComponent implements OnInit {
 
   performPreprocessing() {
     this.preprocessingDataFile();
-    // this.getPrediction();
-    // this.preprocessingDataFile();
     this.isPreProcess = true;
     this.isFileSelected = false;
     this.isAlgoSelected = false;
     this.isPrediction = false;
   }
   performAlgoSelection() {
-    
     this.getPrediction();
     this.isPreProcess = false;
     this.isPrediction = false;
@@ -110,29 +172,6 @@ export class MainComponent implements OnInit {
     this.uploadFile();
   }
 
-  preprocessingDataFile() {
-    this.restservice.preprocessingDataFiles().subscribe(
-      (data) => {
-        this.data = data;
-
-      //   if(data)
-      //   {
-      //   this.getPrediction();
-      // }
-        setTimeout(() => {
-          console.log(this.data[0].data);
-          
-          this.preProcessTech = this.data[0].data;
-
-          console.log(this.preProcessTech);
-        }, 4000);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
-
   singlePrediction(algorithm: any) {
     console.log(algorithm);
 
@@ -142,7 +181,6 @@ export class MainComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
       });
-    // console.log(algorithm);
   }
 
   getPrediction() {
@@ -151,41 +189,6 @@ export class MainComponent implements OnInit {
       this.results = this.data[0].data;
       console.log("Data: ", data);
       console.log("Results: ", this.results);
-      // if (this.results) this.preprocessingDataFile();
-
-      // this.router.navigateByUrl('/Visualization');
     });
-  }
-
-  uploadFile() {
-    console.log("upload func");
-
-    if (this.fileToUpload) {
-      this.FileholderService.setfile(this.fileToUpload);
-      this.restservice.getTheDataFiles(this.fileToUpload).subscribe((data) => {
-        // this.data = data;
-        // this.results = this.data[0].data;
-        console.log("Data: ", data);
-        // console.log("Results: ", this.results);
-
-        // this.router.navigateByUrl('/Visualization');
-      });
-    }
-
-    // Calling service for firebase
-
-    // const obs = await this.UploadfirebaseService.uploadProfileImg(
-    //   {
-    //     file: this.fileToUpload
-    //   }
-    // );
-    // obs.subscribe(
-    //   url => {
-    //     console.log(url);
-    //     localStorage.setItem('fileUrl', JSON.stringify(url));
-    //   }
-    // );
-
-    // Calling the service to pass the data file between other components such as visualization component
   }
 }
