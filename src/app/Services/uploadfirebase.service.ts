@@ -1,34 +1,31 @@
 import {
   AngularFireStorage,
   AngularFireUploadTask,
-} from '@angular/fire/storage';
-import { from, Observable } from 'rxjs';
+} from "@angular/fire/storage";
+import { from, Observable } from "rxjs";
 
-import { Injectable } from '@angular/core';
-import { switchMap } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { switchMap } from "rxjs/operators";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class UploadfirebaseService {
   task: AngularFireUploadTask;
 
-  constructor(
-    private storage: AngularFireStorage) { }
+  constructor(private storage: AngularFireStorage) {}
 
-  public async uploadProfileImg(credentials) {
-
+  public async uploadProfileImg(credentials: any) {
     if (credentials.file instanceof File || credentials.file instanceof Blob) {
-
       const uploadObs = this.uploadFileAndGetMetadata(
-        credentials.file,
+        credentials.file
         // credentials.user.id,
         // folder
       );
 
       return uploadObs.downloadUrl$;
     } else {
-      const obs = Observable.create(obs => {
+      const obs = Observable.create((obs: any) => {
         obs.next(credentials.file);
       });
       return obs;
@@ -49,13 +46,13 @@ export class UploadfirebaseService {
   private getDownloadUrl$(
     uploadTask: AngularFireUploadTask,
     path: string
-  ): Observable<string> {
+  ): Observable<any> {
     return from(uploadTask).pipe(
       switchMap((_) => this.storage.ref(path).getDownloadURL())
     );
   }
 
-  deleteImage(downloadUrl) {
+  deleteImage(downloadUrl: any) {
     return this.storage.storage.refFromURL(downloadUrl).delete();
   }
 }

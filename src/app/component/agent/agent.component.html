@@ -17,21 +17,14 @@
         <div class="table-responsive">
             <table class="table vm no-th-brd pro-of-month mb-0 v-middle">
                 <thead>
-                    <tr *ngFor="let columnName of backendData">
-                        <th>{{columnName}}</th>
-                        <!-- <th>Full Name</th>
-                        <th>Conatct #</th>
-                        <th>Location</th>
-                        <th>Email Address</th>
-                        <th>Access</th>
-                        <th>Status</th>
-                        <th>Operations</th> -->
-                    </tr>
+                    <!-- <tr>
+                        <th *ngFor="let columnName of backendData">{{columnName}}</th>
+                    </tr> -->
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Babar</td>
+                    <tr *ngFor="let columnName of backendData">
+                        <td *ngFor="let col of columnName">{{col}}</td>
+                        <!-- <td>Babar</td>
                         <td>03420493294</td>
                         <td>sadasdas</td>
                         <td>sadassdassas</td>
@@ -45,62 +38,9 @@
                                     <button ngbDropdownItem>Delete</button>
                                 </div>
                             </div>
-                        </td>
+                        </td> -->
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Babar</td>
-                        <td>03420493294</td>
-                        <td>sadasdas</td>
-                        <td>sadassdassas</td>
-                        <td>dasdsadsa</td>
-                        <td>dassdasdsa</td>
-                        <td>
-                            <div ngbDropdown class="d-inline-block">
-                                <button class="btn btn-warning text-white" id="action" ngbDropdownToggle>Action</button>
-                                <div ngbDropdownMenu aria-labelledby="action" style="box-shadow: 0px 0px 10px 1px rgba(204,204,204,1);">
-                                    <button ngbDropdownItem>Edit</button>
-                                    <button ngbDropdownItem>Delete</button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Babar</td>
-                        <td>03420493294</td>
-                        <td>sadasdas</td>
-                        <td>sadassdassas</td>
-                        <td>dasdsadsa</td>
-                        <td>dassdasdsa</td>
-                        <td>
-                            <div ngbDropdown class="d-inline-block">
-                                <button class="btn btn-warning text-white" id="action" ngbDropdownToggle>Action</button>
-                                <div ngbDropdownMenu aria-labelledby="action" style="box-shadow: 0px 0px 10px 1px rgba(204,204,204,1);">
-                                    <button ngbDropdownItem>Edit</button>
-                                    <button ngbDropdownItem>Delete</button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Babar</td>
-                        <td>03420493294</td>
-                        <td>sadasdas</td>
-                        <td>sadassdassas</td>
-                        <td>dasdsadsa</td>
-                        <td>dassdasdsa</td>
-                        <td>
-                            <div ngbDropdown class="d-inline-block">
-                                <button class="btn btn-warning text-white" id="action" ngbDropdownToggle>Action</button>
-                                <div ngbDropdownMenu aria-labelledby="action" style="box-shadow: 0px 0px 10px 1px rgba(204,204,204,1);">
-                                    <button ngbDropdownItem>Edit</button>
-                                    <button ngbDropdownItem>Delete</button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+
                 </tbody>
             </table>
         </div>

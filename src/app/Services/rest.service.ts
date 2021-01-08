@@ -49,7 +49,7 @@ export class RestService {
     return this.http.get(this.trainingTime, { responseType: "text" });
   }
 
-  readResults() {
+  columnsName() {
     return this.http.get(this.columnsNames);
   }
 

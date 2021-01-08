@@ -19,7 +19,7 @@ export class AgentComponent implements OnInit {
     this.loadVisualzeData();
   }
   loadVisualzeData() {
-    this.restservice.readResults().subscribe(
+    this.restservice.columnsName().subscribe(
       (data) => {
         this.backendData = data;
         console.log(this.backendData);

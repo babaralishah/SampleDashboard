@@ -19,6 +19,7 @@ export class MainComponent implements OnInit {
   isAlgoSelected: boolean = false;
   isPrediction: boolean = false;
   isFileSelected: boolean = true;
+  isSinglePrediction: boolean = false;
   backendData: any;
 
   selectedCar: any;
@@ -31,6 +32,8 @@ export class MainComponent implements OnInit {
   ];
   isTraining: boolean = false;
   selectedAlgorithm: any;
+  y_pred: any;
+  results2: any = [];
 
   constructor(
     public restservice: RestService,
@@ -149,6 +152,16 @@ export class MainComponent implements OnInit {
       console.log(data);
     });
   }
+
+  performSinglePrediction() {
+    console.log("prediction");
+
+    this.isPreProcess = false;
+    this.isAlgoSelected = false;
+    this.isPrediction = false;
+    this.isSinglePrediction = true;
+    this.isTraining = false;
+  }
   performPrediction() {
     console.log("prediction");
 
@@ -172,14 +185,24 @@ export class MainComponent implements OnInit {
     this.uploadFile();
   }
 
-  singlePrediction(algorithm: any) {
+  singlePrediction(algorithm: any, name: any) {
+    this.results2 = [];
     console.log(algorithm);
 
-    this.selectedAlgorithm = algorithm;
+    this.selectedAlgorithm = name;
+    this.results.forEach((element: any) => {
+      if(element.Algorithm === this.selectedAlgorithm) {
+        this.results2.push(element);
+      }
+    });
+    // this.results2 = this.results;
+    console.log(this.selectedAlgorithm);
+
     this.restservice
       .singlePredictions({ algorithm: algorithm })
       .subscribe((data) => {
         console.log(data);
+        this.y_pred = data;
       });
   }
 

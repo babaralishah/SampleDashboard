@@ -54,11 +54,13 @@
 
         <br><br>
 
-        <div class="col-3" *ngIf="preProcessTech">
-            <button class="btn btn-primary" (click)="performAlgoSelection()"> Proceed for <b>Algorithm Selection</b></button>
-        </div>
-        <div class="col-3" *ngIf="preProcessTech">
-            <button class="btn btn-primary" (click)="backToFileInput()">back</button>
+        <div class="row">
+            <div class="col-5">
+                <button class="btn btn-primary" (click)="backToFileInput()">back</button>
+            </div>
+            <div class="col-7">
+                <button class="btn btn-primary" (click)="performAlgoSelection()"> Proceed for <b>Algorithm Selection</b></button>
+            </div>
         </div>
     </div>
     <div *ngIf="isAlgoSelected">
@@ -73,17 +75,17 @@
 
                 <!-- <div *ngFor="let row of results"> -->
                 <!-- <button class="btn3 btn-primary" (click)="singlePrediction(row.Algorithm)">{{row.Algorithm}}</button> -->
-                <button class="btn3 btn-primary" (click)="singlePrediction('1')">Linear Regression</button>
+                <button class="btn3 btn-primary" (click)="singlePrediction('1','Linear Regression')">Linear Regression</button>
                 <br>
-                <button class="btn3 btn-primary" (click)="singlePrediction('2')">Logistic Regression</button>
+                <button class="btn3 btn-primary" (click)="singlePrediction('2','Logistic Regression')">Logistic Regression</button>
                 <br>
-                <button class="btn3 btn-primary" (click)="singlePrediction('3')">Decision Tree</button>
+                <button class="btn3 btn-primary" (click)="singlePrediction('3','Decision Tree')">Decision Tree</button>
                 <br>
-                <button class="btn3 btn-primary" (click)="singlePrediction('4')">K nearest neighbor</button>
+                <button class="btn3 btn-primary" (click)="singlePrediction('4','K nearest neighbor')">K nearest neighbor</button>
                 <br>
-                <button class="btn3 btn-primary" (click)="singlePrediction('5')">Naive Bayes</button>
+                <button class="btn3 btn-primary" (click)="singlePrediction('5','Naive Bayes')">Naive Bayes</button>
                 <br>
-                <button class="btn3 btn-primary" (click)="singlePrediction('6')">Random Forest</button>
+                <button class="btn3 btn-primary" (click)="singlePrediction('6','Random Forest')">Random Forest</button>
                 <br>
                 <!-- <button class="btn3 btn-primary" (click)="singlePrediction('7')">Support Vector Machine</button> -->
                 <br>
@@ -109,20 +111,22 @@
 
 
     <div class="row" *ngIf="isAlgoSelected && results">
-        <div class="col-3">
+        <div class="col-1">
+            <button class="btn btn-primary" (click)="performPreprocessing()">back</button>
+        </div>
+        <div class="col-2">
             <button class="btn btn-primary" (click)="performTraining()"> Proceed for <b>Model Training</b></button></div>
 
-        <div class="col-3">
+        <div class="col-2">
             <button class="btn btn-primary" (click)="performPrediction()"> Proceed for <b>All Model Training</b></button>
         </div>
         <!-- <button class="btn btn-primary" (click)="performPrediction()"> Proceed next for <b>Prediction</b></button></div> -->
 
-        <div class="col-3">
-            <button class="btn btn-primary" (click)="performPreprocessing()">back</button>
-        </div>
     </div>
 
 </div>
+
+<!-- Single Model Training -->
 
 <div *ngIf="isTraining">
 
@@ -130,6 +134,75 @@
     <br>
 
     <!-- <h4>Select the Algorithm for Prediction</h4> -->
+
+    <div class="row">
+        <div class="col-12">
+            <br>
+            <p>model is been under training</p>
+            <br>
+            <table id="results" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th *ngFor="let column of headers1">
+                            {{column}}
+                        </th>
+                    </tr>
+
+                    <tr *ngFor="let row of results2">
+                        <td *ngFor="let col of headers1">
+                            <span>{{row[col]}}</span>
+                        </td>
+                    </tr>
+                </thead>
+
+            </table>
+
+        </div>
+    </div>
+
+    <div class="row" *ngIf="isTraining">
+        <div class="col-1">
+            <button class="btn btn-primary" (click)="performAlgoSelection()">back</button>
+        </div>
+        <div class="col-2">
+            <!-- <button class="btn btn-primary" (click)="performTraining()"> Proceed for <b>Machine Training</b></button></div> -->
+            <button class="btn btn-primary" (click)="performSinglePrediction()"> Proceed next for <b>Prediction</b></button></div>
+
+    </div>
+</div>
+
+<!-- Single Prediction Results -->
+<div class="row" *ngIf="isSinglePrediction">
+    <h2>{{selectedAlgorithm}} Prediction Result</h2>
+    <table id="results" class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    y_pred
+                </th>
+                <th>
+                    y_test
+                </th>
+            </tr>
+
+            <tr *ngFor="let row of y_pred">
+                <td>
+                    {{row}}
+                </td>
+                <td></td>
+            </tr>
+        </thead>
+
+    </table>
+    <br>
+</div>
+
+<!-- All Models Training -->
+<!-- <div *ngIf="isTraining">
+
+    <h2>Model Training..</h2>
+    <br>
+
 
     <div class="row">
         <div class="col-12">
@@ -157,15 +230,14 @@
     </div>
 
     <div class="row" *ngIf="isTraining">
-        <div class="col-3">
-            <!-- <button class="btn btn-primary" (click)="performTraining()"> Proceed for <b>Machine Training</b></button></div> -->
-            <button class="btn btn-primary" (click)="performPrediction()"> Proceed next for <b>Prediction</b></button></div>
-
-        <div class="col-3">
+        <div class="col-1">
             <button class="btn btn-primary" (click)="performAlgoSelection()">back</button>
         </div>
+        <div class="col-2">
+            <button class="btn btn-primary" (click)="performPrediction()"> Proceed next for <b>Prediction</b></button></div>
+
     </div>
-</div>
+</div> -->
 
 <!-- Prediction Results in the Data Table -->
 <div class="row" *ngIf="isPrediction">
@@ -189,15 +261,15 @@
     <br>
 </div>
 <div class="row" *ngIf="isPrediction && results">
-    <div class="col-2">
+    <div class="col-1">
         <button class="btn btn-primary" (click)="backToPrediction()">back</button>
     </div>
 
-    <div class="col-3">
+    <div class="col-2">
         <button class="btn btn-primary" (click)="performAlgoSelection()">back to <b>Alogrothm Selection</b></button>
 
     </div>
-    <div class="col-3">
+    <div class="col-2">
         <button class="btn btn-primary" routerLink="/Visualization">Go for <b>Visualization</b></button>
 
     </div>
