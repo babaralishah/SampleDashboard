@@ -106,11 +106,6 @@ export class MainComponent implements OnInit {
     this.restservice.preprocessingDataFiles().subscribe(
       (data) => {
         this.data = data;
-
-        //   if(data)
-        //   {
-        //   this.getPrediction();
-        // }
         setTimeout(() => {
           console.log(this.data[0].data);
 
@@ -133,6 +128,8 @@ export class MainComponent implements OnInit {
   performTraining() {
     this.isTraining = true;
     this.isAlgoSelected = false;
+    this.isSinglePrediction = false;
+    this.getPrediction();
   }
 
   performPreprocessing() {
@@ -143,14 +140,14 @@ export class MainComponent implements OnInit {
     this.isPrediction = false;
   }
   performAlgoSelection() {
-    this.getPrediction();
+    // this.getPrediction();
     this.isPreProcess = false;
     this.isPrediction = false;
     this.isAlgoSelected = true;
     this.isTraining = false;
-    this.restservice.gettrainingTime().subscribe((data) => {
-      console.log(data);
-    });
+    // this.restservice.gettrainingTime().subscribe((data) => {
+    //   console.log(data);
+    // });
   }
 
   performSinglePrediction() {
@@ -163,6 +160,7 @@ export class MainComponent implements OnInit {
     this.isTraining = false;
   }
   performPrediction() {
+    this.getPrediction();
     console.log("prediction");
 
     this.isPreProcess = false;
@@ -191,7 +189,7 @@ export class MainComponent implements OnInit {
 
     this.selectedAlgorithm = name;
     this.results.forEach((element: any) => {
-      if(element.Algorithm === this.selectedAlgorithm) {
+      if (element.Algorithm === this.selectedAlgorithm) {
         this.results2.push(element);
       }
     });
@@ -207,7 +205,7 @@ export class MainComponent implements OnInit {
   }
 
   getPrediction() {
-    this.restservice.parseTable().subscribe((data) => {
+    this.restservice.getPrediction().subscribe((data) => {
       this.data = data;
       this.results = this.data[0].data;
       console.log("Data: ", data);

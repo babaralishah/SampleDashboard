@@ -72,15 +72,15 @@ export class VisualizationComponent implements OnInit {
   }
   // tslint:disable-next-line: typedef
   loadVisualzeData() {
-    this.restservice.readResults().subscribe(
-      (data) => {
+    this.restservice.columnsName().subscribe(
+      (data:any) => {
         this.backendData = data;
         console.log(this.backendData);
 
         // var obj = JSON.parse(this.backendData);
         // console.log('Backend Data Json parse: ', this.backendData[0]);
       },
-      (error) => {
+      (error:any) => {
         console.log("No Data Found of Visualization" + error);
       }
     );

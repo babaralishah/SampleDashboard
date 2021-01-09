@@ -61,7 +61,7 @@ export class RestService {
     return this.http.post(this.dataFileDetails, formData);
   }
 
-  parseTable() {
+  getPrediction() {
     return this.http.get(this.predictionPerform); // ,{  responseType: 'arraybuffer' | 'blob' | 'json' | 'text' });
   }
 }
