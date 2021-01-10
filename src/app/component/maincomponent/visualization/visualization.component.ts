@@ -31,35 +31,37 @@ export class VisualizationComponent implements OnInit {
   public doughnutChartData: any[] = [];
   public doughnutChartType = "doughnut";
 
-  public lineChartLabels: any[] = [];
-  public lineChartData: any[] = [];
+  public lineChartLabels: any[] = [2010, 2011, 2012, 2013];
+  public lineChartData: any[] = [5, 12, 14, 72];
   public lineChartType = "line";
   public lineChartLegend = true;
 
-  public polarChartLabels: any[] = [];
-  public polarChartData: any[] = [];
+  public polarChartLabels: any[] = [2010, 2011, 2012, 2013];
+  public polarChartData: any[] = [5, 12, 14, 72];
   public polarChartType = "polar";
   public polarChartLegend = true;
 
-  public bubbleChartLabels: any[] = [];
-  public bubbleChartData: any[] = [];
+  public bubbleChartLabels: any[] = [2010, 2011, 2012, 2013];
+  public bubbleChartData: any[] = [5, 12, 14, 72];
   public bubbleChartType = "bubble";
   public bubbleChartLegend = true;
 
-  public barChartLabels: any[] = [];
+  public barChartLabels: any[] = [2010, 2011, 2012, 2013];
   public barChartType = "bar";
   public barChartLegend = true;
-  public barChartData: any[] = [];
+  public barChartData: any[] = [5, 12, 14, 72];
 
   public pieChartLabels: any[] = [];
   public pieChartData: any[] = [];
   public pieChartType = "pie";
 
-  public radarChartLabels: any[] = [];
-  public radarChartData: any[] = [];
+  public radarChartLabels: any[] = [2010, 2011, 2012, 2013];
+  public radarChartData: any[] = [5, 12, 14, 72];
   public radarChartType = "radar";
   lastColumn: any;
   data: any;
+  firstDataColumn: any = [];
+  lastDataColumn: any = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -69,23 +71,35 @@ export class VisualizationComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadVisualzeData();
+    this.getFirstColumn();
+    this.predictedFiles();
   }
-  // tslint:disable-next-line: typedef
+  predictedFiles() {
+    this.restservice.predictedFiles().subscribe((data) => {
+      console.log(data);
+      this.lastDataColumn = data;
+    });
+  }
   loadVisualzeData() {
     this.restservice.columnsName().subscribe(
-      (data:any) => {
+      (data: any) => {
         this.backendData = data;
         console.log(this.backendData);
 
         // var obj = JSON.parse(this.backendData);
         // console.log('Backend Data Json parse: ', this.backendData[0]);
       },
-      (error:any) => {
+      (error: any) => {
         console.log("No Data Found of Visualization" + error);
       }
     );
   }
-
+  getFirstColumn() {
+    this.restservice.getFirstColumn().subscribe((data) => {
+      console.log(data);
+      this.firstDataColumn = data;
+    });
+  }
   setName1(name: any) {
     console.log(name);
 
@@ -100,7 +114,23 @@ export class VisualizationComponent implements OnInit {
     this.chartname = chart;
   }
   sendData() {
-    // console.log("Calling send data");
+    let firstDataColumn = [];
+    let lastDataColumn: any = [];
+    for (let i = 0; i < 50; i++) {
+      this.lastDataColumn.forEach(function (data: any) {
+        lastDataColumn[i] = data[0];
+        // console.log(lastDataColumn[i]);
+      });
+    }
+    for (let i = 0; i < 50; i++) {
+      firstDataColumn[i] = this.firstDataColumn[i];
+    }
+    this.doughnutChartLabels = firstDataColumn;
+    this.doughnutChartData = lastDataColumn;
+    this.pieChartData = lastDataColumn;
+    this.pieChartLabels = firstDataColumn;
+    console.log(this.doughnutChartLabels);
+    console.log(this.doughnutChartData);
     this.restservice
       .dataFileDetail({ name1: this.name1, name2: this.name2 })
       .subscribe((data: any) => {
@@ -175,26 +205,26 @@ export class VisualizationComponent implements OnInit {
           // console.log(avgArr);
           // console.log(labels);
           // console.log(complexArr);
-          this.doughnutChartLabels = labels;
-          this.doughnutChartData = avgArr;
+          this.doughnutChartLabels = this.firstDataColumn;
+          // this.doughnutChartData = avgArr;
 
-          this.lineChartLabels = labels;
-          this.lineChartData = avgArr;
+          // this.lineChartLabels = labels;
+          // this.lineChartData = avgArr;
 
-          this.polarChartLabels = labels;
-          this.polarChartData = avgArr;
+          // this.polarChartLabels = labels;
+          // this.polarChartData = avgArr;
 
-          this.bubbleChartLabels = labels;
-          this.bubbleChartData = complexArr;
+          // this.bubbleChartLabels = labels;
+          // this.bubbleChartData = complexArr;
 
-          this.pieChartLabels = labels;
-          this.pieChartData = avgArr;
+          // this.pieChartLabels = labels;
+          // this.pieChartData = avgArr;
 
-          this.barChartLabels = labels;
-          this.barChartData = complexArr;
+          // this.barChartLabels = labels;
+          // this.barChartData = complexArr;
 
-          this.radarChartLabels = labels;
-          this.radarChartData = complexArr;
+          // this.radarChartLabels = labels;
+          // this.radarChartData = complexArr;
           // this.barChartData = labels;
           console.log("\nDone\n");
         });

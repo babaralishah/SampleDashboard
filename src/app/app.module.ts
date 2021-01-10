@@ -1,4 +1,6 @@
 // import * as $ from 'jquery';
+
+import {NgxPaginationModule} from 'ngx-pagination'
 import { ChartsModule } from 'ng2-charts';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BrowserModule } from '@angular/platform-browser';
@@ -50,6 +52,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     VisualizationComponent
   ],
   imports: [
+    NgxPaginationModule,
     ChartsModule,
     NgSelectModule,
     CommonModule,

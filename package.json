@@ -22,6 +22,7 @@
     "@angular/router": "^10.0.2",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
     "@ng-select/ng-select": "^5.0.11",
+    "@types/chart.js": "^2.9.29",
     "chart.js": "^2.9.4",
     "chartjs-color": "^2.4.1",
     "core-js": "^2.6.9",
@@ -29,12 +30,14 @@
     "moment": "^2.27.0",
     "ng2-charts": "^2.4.2",
     "ngx-csv-parser": "0.0.6",
+    "ngx-pagination": "^5.0.0",
     "ngx-perfect-scrollbar": "6.1.0",
     "ngx-toastr": "^13.2.0",
     "node-sass": "^4.14.1",
     "rxjs": "^6.5.4",
     "rxjs-compat": "^6.5.2",
     "tslib": "^2.0.0",
+    "xlsx": "^0.16.9",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {

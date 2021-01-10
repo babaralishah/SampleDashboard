@@ -16,7 +16,7 @@
             </div>
         </div>
         <br><br>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col">
                 <h2>Select response</h2>
                 <div class="col-3 btn2">
@@ -26,7 +26,7 @@
                     </ng-select>
                 </div>
             </div>
-        </div>
+        </div> -->
         <br><br>
         <input class="btn btn-primary" type="submit" (click)="sendData()" value="Visualize">
     </form>
@@ -132,68 +132,17 @@
                     </div>
                     <table class="table vm font-14">
                         <tr>
-                            <td class="b-0">Mobile</td>
-                            <td class="text-right font-medium b-0">38.5%</td>
+                            <td class="b-0">Years</td>
+                            <td class="text-right font-medium b-0">{{firstDataColumn[0]}} - {{firstDataColumn[49]}}</td>
                         </tr>
                         <tr>
-                            <td>Tablet</td>
-                            <td class="text-right font-medium">30.8%</td>
+                            <td *ngIf="name1">{{name1}}(Average): </td>
+                            <td *ngIf="name1" class="text-right font-medium">{{lastDataColumn[0]}}</td>
                         </tr>
                     </table>
                 </div>
             </div>
         </div>
 
-
-        <!-- <div class="col-md-5 col-sm-6" *ngIf="barChartData.length>0 && [chartname] == 'bar'">
-            <h1><b>Bar Chart</b></h1><br><br>
-            <div class="chart" style="display: block">
-                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [legend]="barChartLegend" [chartType]="barChartType"></canvas>
-            </div>
-        </div> -->
-        <!-- </div>
-    <div class="row"> -->
-        <!-- <div class="col-md-5 col-sm-6" *ngIf="[chartname] == 'line'">
-
-            <h1><b>Line Chart</b></h1><br><br>
-            <div class="chart" style="display: block">
-                <canvas baseChart [data]="lineChartData" [labels]="lineChartLabels" [chartType]="lineChartType"></canvas>
-            </div>
-        </div>
-        <div class="col-md-5 col-sm-6" *ngIf="[chartname] == 'bubble'">
-
-            <h1><b>Bubble Chart</b></h1><br><br>
-            <div class="chart" style="display: block">
-                <canvas baseChart [data]="bubbleChartData" [labels]="bubbleChartLabels" [chartType]="bubbleChartType"></canvas>
-            </div>
-        </div>
-        <div class="col-md-5 col-sm-6" *ngIf="[chartname] == 'polar'">
-
-            <h1><b>Polar Chart</b></h1><br><br>
-            <div class="chart" style="display: block">
-                <canvas baseChart [data]="polarChartData" [labels]="polarChartLabels" [chartType]="polarChartType"></canvas>
-            </div>
-        </div>
-        <div class="col-md-5 col-sm-6" *ngIf="[chartname] == 'doughnut'">
-
-            <h1><b>Doughnut Chart</b></h1><br><br>
-            <div class="chart" style="display: block">
-                <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"></canvas>
-            </div>
-        </div>
-        <div class="col-md-5 col-sm-6" *ngIf="[chartname] == 'pie'">
-
-            <h1><b>Pie Chart</b></h1><br><br>
-            <div class="chart" style="display: block">
-                <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"></canvas>
-            </div>
-        </div>
-        <div class="col-md-5 col-sm-6" *ngIf="[chartname] == 'radar'">
-
-            <h1><b>Radar Chart</b></h1><br><br>
-            <div class="chart" style="display: block">
-                <canvas baseChart [datasets]="radarChartData" [labels]="radarChartLabels" [chartType]="radarChartType"></canvas>
-            </div>
-        </div> -->
     </div>
 </div>

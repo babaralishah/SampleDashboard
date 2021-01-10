@@ -10,6 +10,7 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ["./main.component.css"],
 })
 export class MainComponent implements OnInit {
+  p: number = 1;
   general_search: any;
   data: any;
   fileToUpload: any;
@@ -44,7 +45,7 @@ export class MainComponent implements OnInit {
     "Algorithm",
     "Test data Accuracy",
     "Train data Accuracy",
-    // "TrainingTime",
+    "TrainingTime",
   ];
 
   headers2 = ["Technique", "Time Taken"];

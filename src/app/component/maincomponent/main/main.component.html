@@ -103,10 +103,10 @@
             <button class="btn btn-primary" (click)="performAlgoSelection()"><b>back</b></button>
 
         </div> -->
-        <div class="col-2">
+        <!-- <div class="col-2">
             <button class="btn btn-primary" routerLink="/Visualization">Go for <b>Visualization</b></button>
 
-        </div>
+        </div> -->
     </div>
 
     <div *ngIf="isAlgoSelected">
@@ -146,11 +146,11 @@
         <div class="col-2">
             <button class="btn btn-primary" (click)="performTraining()"> Proceed for <b>Model Training</b></button></div>
 
-
+        <!-- 
         <div class="col-2">
             <button class="btn btn-primary" routerLink="/Visualization">Go for <b>Visualization</b></button>
 
-        </div>
+        </div> -->
     </div>
 
 
@@ -188,6 +188,10 @@
             <div class="col-2">
                 <!-- <button class="btn btn-primary" (click)="performTraining()"> Proceed for <b>Machine Training</b></button></div> -->
                 <button class="btn btn-primary" (click)="performSinglePrediction()"> Proceed next for <b>Prediction</b></button></div>
+            <div class="col-2">
+                <button class="btn btn-primary" routerLink="/Visualization">Go for <b>Visualization</b></button>
+
+            </div>
 
         </div>
     </div>
@@ -202,23 +206,29 @@
         </div>
         <table id="results" class="table table-striped">
             <thead>
-                <tr>
-                    <th>
-                        y_pred
-                    </th>
-                    <th>
-                        y_test
-                    </th>
-                </tr>
+                <!-- <tr> -->
+                <th>
+                    y_pred
+                </th>
+                <th>
+                    y_test
+                </th>
+                <!-- </tr> -->
 
-                <tr *ngFor="let row of y_pred">
+                <!-- <tr *ngFor="let row of y_pred">
                     <td>
                         {{row}}
                     </td>
                     <td></td>
-                </tr>
+                </tr> -->
             </thead>
-
+            <tbody>
+                <tr *ngFor="let row of y_pred ">
+                    <td>
+                        {{row}}</td>
+                    <td></td>
+                </tr>
+            </tbody>
         </table>
         <br>
         <div class="row">
