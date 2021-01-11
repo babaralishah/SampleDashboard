@@ -11,22 +11,9 @@
 
                     <ng-select class="ng-select" [items]="backendData" bindLabel="year" bindValue="year" placeholder="Select predictor" (change)="setName1($event)">
                     </ng-select>
-                    <!-- <button (click)="setName1(data)" class="btn btn-primary" *ngFor="let data of backendData">{{data}}</button> -->
                 </div>
             </div>
         </div>
-        <br><br>
-        <!-- <div class="row">
-            <div class="col">
-                <h2>Select response</h2>
-                <div class="col-3 btn2">
-                    <br>
-
-                    <ng-select class="ng-select" [items]="backendData" bindLabel="year" bindValue="year" placeholder="Years to Predict" (change)="setName2($event)">
-                    </ng-select>
-                </div>
-            </div>
-        </div> -->
         <br><br>
         <input class="btn btn-primary" type="submit" (click)="sendData()" value="Visualize">
     </form>
@@ -37,12 +24,6 @@
         <div class="col-12">
             <h4>Choose a visual</h4>
         </div>
-        <!-- <div class="form-group col-4">
-            <div class="input-group">
-
-
-            </div>
-        </div> -->
         <div class="col-12">
             <button class="btn btn-primary" (click)="checkChart('bar')">Bar Chart</button>
             <button class="btn btn-primary" (click)="checkChart('doughnut')">Doughnut Chart</button>
@@ -137,7 +118,7 @@
                         </tr>
                         <tr>
                             <td *ngIf="name1">{{name1}}(Average): </td>
-                            <td *ngIf="name1" class="text-right font-medium">{{lastDataColumn[0]}}</td>
+                            <td *ngIf="name1" class="text-right font-medium">{{lastDataColumn[10]}}</td>
                         </tr>
                     </table>
                 </div>

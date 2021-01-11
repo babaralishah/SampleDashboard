@@ -33,8 +33,9 @@ export class MainComponent implements OnInit {
   ];
   isTraining: boolean = false;
   selectedAlgorithm: any;
-  y_pred: any;
+  y_pred: any = [];
   results2: any = [];
+  y_test: any = [];
 
   constructor(
     public restservice: RestService,
@@ -201,7 +202,12 @@ export class MainComponent implements OnInit {
       .singlePredictions({ algorithm: algorithm })
       .subscribe((data) => {
         console.log(data);
-        this.y_pred = data;
+        this.data = data;
+        this.y_pred = this.data[0];
+        this.y_test = this.data[1];
+        console.log(this.y_pred);
+
+        console.log(this.y_test);
       });
   }
 
