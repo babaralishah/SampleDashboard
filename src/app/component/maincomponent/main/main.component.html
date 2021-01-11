@@ -223,13 +223,14 @@
                 </tr> -->
             </thead>
             <tbody>
-                <tr *ngFor="let row of y_pred ">
+                <tr *ngFor="let row of y_pred  | paginate:{itemsPerPage:50,currentPage:p};">
                     <td>
                         {{row}}</td>
                     <td></td>
                 </tr>
             </tbody>
         </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
         <br>
         <div class="row">
             <div class="col-2">

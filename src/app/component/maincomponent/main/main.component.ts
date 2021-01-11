@@ -4,6 +4,9 @@ import { FileholderService } from "src/app/Services/fileholder.service";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { ToastrService } from "ngx-toastr";
+import {UploadfirebaseService} from './../../../Services/uploadfirebase.service';
+import { AuthenticationService } from 'src/app/Services/Authentication/authentication.service';
+
 @Component({
   selector: "app-main",
   templateUrl: "./main.component.html",
@@ -39,7 +42,9 @@ export class MainComponent implements OnInit {
   constructor(
     public restservice: RestService,
     private FileholderService: FileholderService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private uploadService: UploadfirebaseService,
+    private authService: AuthenticationService
   ) {}
   headers1 = [
     "Algorithm",
@@ -63,11 +68,21 @@ export class MainComponent implements OnInit {
     // this.preprocessingDataFile();
   }
 
-  uploadFile() {
+  async uploadFile() {
     console.log("upload func");
 
     if (this.fileToUpload) {
       this.FileholderService.setfile(this.fileToUpload);
+      const uploadImgObs = await this.uploadService.uploadProfileImg({file: this.fileToUpload});
+      uploadImgObs.subscribe(async (imgUrl: any) => {
+        console.log(imgUrl);
+        const obs = this.authService.createFileUrl({fileName: this.fileToUpload.name, fileUrl: imgUrl});
+        obs.subscribe((data: any) => {
+          console.log(data);
+        }, (error: any) => {
+          console.log(error);
+        });
+      });
       this.restservice.getTheDataFiles(this.fileToUpload).subscribe((data) => {
         // this.data = data;
         // this.results = this.data[0].data;
