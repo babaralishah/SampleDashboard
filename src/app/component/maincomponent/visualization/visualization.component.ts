@@ -113,9 +113,13 @@ export class VisualizationComponent implements OnInit {
         for (let i = 0; i < 30; i++) {
           lastDataColumn[i] = this.lastDataColumn[i];
         }
+        console.log(lastDataColumn);
+        
         for (let i = 0; i < 30; i++) {
           firstDataColumn[i] = this.firstDataColumn[i];
         }
+        console.log(firstDataColumn);
+        
         this.doughnutChartLabels = firstDataColumn;
         this.doughnutChartData = lastDataColumn;
         this.pieChartData = lastDataColumn;
