@@ -21,6 +21,11 @@ export class AuthenticationService {
 
   constructor(private httpClient: HttpClient, public router: Router) {}
   ///////// Function to Register the new user /////////////
+
+  getFiles(id: any) {
+    return this.httpClient.get(`${this.url}/users/${id}/getFilesUrl/`);
+  }
+
   register(user: any): Observable<any> {
     return this.httpClient.post(`${this.url}/users/signup`, user);
   }

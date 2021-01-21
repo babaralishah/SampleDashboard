@@ -41,6 +41,7 @@ import {
 } from "@angular/fire/storage";
 import { AngularFireModule } from "@angular/fire";
 import { environment } from 'src/environments/environment';
+import { AboutComponent } from './maincomponent/about/about.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -57,7 +58,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NavigationComponent,
     SidebarComponent,
     BreadcrumbComponent,
-    VisualizationComponent
+    VisualizationComponent,
+    AboutComponent
   ],
   imports: [
     NgxPaginationModule,

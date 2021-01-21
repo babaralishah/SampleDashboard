@@ -51,20 +51,20 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: "/agent",
-    title: "Actual Data File",
+    title: "Processed Data File",
     icon: "fas fa-file-alt",
     class: "",
     extralink: false,
     submenu: [],
   },
-  {
-    path: "/inventory",
-    title: "Processed Data File",
-    icon: "fas fa-file-powerpoint",
-    class: "",
-    extralink: false,
-    submenu: [],
-  },
+  // {
+  //   path: "/inventory",
+  //   title: "Processed Data File",
+  //   icon: "fas fa-file-powerpoint",
+  //   class: "",
+  //   extralink: false,
+  //   submenu: [],
+  // },
   {
     path: "/Visualization",
     title: "Visualization",
@@ -73,20 +73,12 @@ export const ROUTES: RouteInfo[] = [
     extralink: false,
     submenu: [],
   },
-  // {
-  //   path: "/Login",
-  //   title: "Login",
-  //   icon: "fas fa-lock-open",
-  //   class: "",
-  //   extralink: false,
-  //   submenu: [],
-  // },
-  // {
-  //   path: "/Signup",
-  //   title: "Signup",
-  //   icon: "fas fa-lock",
-  //   class: "",
-  //   extralink: false,
-  //   submenu: [],
-  // }
+  {
+    path: "/faq",
+    title: "FAQ",
+    icon: "fas fa-chart-pie",
+    class: "",
+    extralink: false,
+    submenu: [],
+  },
 ];

@@ -12,6 +12,7 @@ import { InventoryComponent } from "./component/inventory/inventory.component";
 import { AddInventoryComponent } from "./component/inventory/add-inventory/add-inventory.component";
 import { AddAgentsComponent } from "./component/agent/add-agents/add-agents.component";
 import { AgentComponent } from "./component/agent/agent.component";
+import { AboutComponent } from "./maincomponent/about/about.component";
 
 export const Approutes: Routes = [
   {
@@ -49,6 +50,11 @@ export const Approutes: Routes = [
         component: UserProfileComponent,
       },
       {
+        path: "faq",
+        canActivate: [IsLoginGuard],
+        component: AboutComponent,
+      },
+      {
         path: "agent",
         canActivate: [IsLoginGuard],
         children: [
@@ -56,7 +62,7 @@ export const Approutes: Routes = [
             path: "",
             component: AgentComponent,
             data: {
-              title: "Unprocessed Data File",
+              title: "Processed Data File",
             },
           },
           {

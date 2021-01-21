@@ -30,7 +30,7 @@ export class UserProfileComponent implements OnInit {
     const decodedToken = await this.authService.getDecodedToken(this.token);
     this.tokendata = decodedToken;
     console.log(this.tokendata);
-    this.userName = this.tokendata.name;
+    this.userName = this.tokendata?.name;
     // console.log(this.userName);
     
   }

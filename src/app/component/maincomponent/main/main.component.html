@@ -14,18 +14,16 @@
                 <button class="btn btn-primary" (click)="performPreprocessing()">Proceed Next for <b>Cleansing/Preprocessing</b></button>
             </div>
         </div>
-        <div class="col-1" *ngIf="isFileSelected">
+        <!-- <div class="col-1" *ngIf="isFileSelected">
             <div class="vl"></div>
-        </div>
+        </div> -->
         <div class="col-3" *ngIf="isFileSelected">
             <h2>workspace</h2>
-            <ul>
-                <li>file 1</li>
-                <li>file 2</li>
-                <li>file 32</li>
-                <li>file 55</li>
+            <ul *ngFor="let file of userFiles ">
+                <li>{{file?.name}}</li>
+
             </ul>
-            <button class="btn btn-group" (click)="performPreprocessing()">Choose File to Perform</button>
+            <!-- <button class="btn btn-group" (click)="performPreprocessing()">Choose File to Perform</button> -->
         </div>
     </div>
 

@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe(
       (data) => {
         console.log("Subscribed Data: ", data);
-        const msg = data.message;
+        const msg = data.status;
         const token = data.token;
         const email = this.loginForm.value.email;
         if(!data.success){

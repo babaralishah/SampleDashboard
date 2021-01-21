@@ -4,8 +4,8 @@ import { FileholderService } from "src/app/Services/fileholder.service";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { ToastrService } from "ngx-toastr";
-import {UploadfirebaseService} from './../../../Services/uploadfirebase.service';
-import { AuthenticationService } from 'src/app/Services/Authentication/authentication.service';
+import { UploadfirebaseService } from "./../../../Services/uploadfirebase.service";
+import { AuthenticationService } from "src/app/Services/Authentication/authentication.service";
 
 @Component({
   selector: "app-main",
@@ -39,6 +39,9 @@ export class MainComponent implements OnInit {
   y_pred: any = [];
   results2: any = [];
   y_test: any = [];
+  token: any;
+  tokendata: any;
+  userFiles: any;
 
   constructor(
     public restservice: RestService,
@@ -67,22 +70,51 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     // this.preprocessingDataFile();
+    this.tokenization();
+    this.getUserFiles();
   }
 
+  tokenization() {
+    this.token = this.authService.getToken();
+    // console.log(this.token);
+
+    const decodedToken = this.authService.getDecodedToken(this.token);
+    this.tokendata = decodedToken;
+    console.log(this.tokendata);
+    // console.log(this.userName);
+  }
+  getUserFiles() {
+    console.log(this.tokendata?._id);
+
+    this.authService.getFiles(this.tokendata._id).subscribe((data) => {
+      console.log(data);
+      this.backendData = data;
+      this.userFiles = this.backendData.data.files;
+      console.log(this.userFiles);
+    });
+  }
   async uploadFile() {
     console.log("upload func");
 
     if (this.fileToUpload) {
       this.FileholderService.setfile(this.fileToUpload);
-      const uploadImgObs = await this.uploadService.uploadProfileImg({file: this.fileToUpload});
+      const uploadImgObs = await this.uploadService.uploadProfileImg({
+        file: this.fileToUpload,
+      });
       uploadImgObs.subscribe(async (imgUrl: any) => {
         console.log(imgUrl);
-        const obs = this.authService.createFileUrl({fileName: this.fileToUpload.name, fileUrl: imgUrl});
-        obs.subscribe((data: any) => {
-          console.log(data);
-        }, (error: any) => {
-          console.log(error);
+        const obs = this.authService.createFileUrl({
+          fileName: this.fileToUpload.name,
+          fileUrl: imgUrl,
         });
+        obs.subscribe(
+          (data: any) => {
+            console.log(data);
+          },
+          (error: any) => {
+            console.log(error);
+          }
+        );
       });
       this.restservice.getTheDataFiles(this.fileToUpload).subscribe((data) => {
         // this.data = data;

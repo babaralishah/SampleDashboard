@@ -79,9 +79,11 @@ export class SignupComponent implements OnInit {
     console.log(this.registerForm.value);
     this.authService.register(this.registerForm.value).subscribe(
       (data) => {
+        console.log(data);
+
         const token = data.token;
         console.log(token);
-        
+
         console.log("signup data: ", data.success);
         const msg = data.message;
 
@@ -91,10 +93,10 @@ export class SignupComponent implements OnInit {
           });
           return;
         }
-        
+
         this.authService.setToken(token);
         // if (data.success) {
-        this.toastr.success(msg, "Success", {
+        this.toastr.success("User Created Successfully", "Success", {
           timeOut: 5000,
         });
 
