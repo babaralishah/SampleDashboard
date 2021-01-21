@@ -25,13 +25,13 @@
             <h4>Choose a visual</h4>
         </div>
         <div class="col-12">
-            <button class="btn btn-primary" (click)="checkChart('bar')">Bar Chart</button>
+            <!-- <button class="btn btn-primary" (click)="checkChart('bar')">Bar Chart</button> -->
             <button class="btn btn-primary" (click)="checkChart('doughnut')">Doughnut Chart</button>
             <button class="btn btn-primary" (click)="checkChart('pie')">Pie Chart</button>
-            <button class="btn btn-primary" (click)="checkChart('radar')">Radar Chart</button>
+            <!-- <button class="btn btn-primary" (click)="checkChart('radar')">Radar Chart</button> -->
             <button class="btn btn-primary" (click)="checkChart('line')">Line Chart</button>
-            <button class="btn btn-primary" (click)="checkChart('polar')">Polar Chart</button>
-            <button class="btn btn-primary" (click)="checkChart('bubble')">Bubble Chart</button>
+            <!-- <button class="btn btn-primary" (click)="checkChart('polar')">Polar Chart</button>
+            <button class="btn btn-primary" (click)="checkChart('bubble')">Bubble Chart</button> -->
 
         </div>
         <ng-select class="ng-select predict-select pull-right" [items]="yearsOfPrediction" bindLabel="year" (change)="setNumberOfSet($event)" bindValue="year" placeholder="Years to Predict">
