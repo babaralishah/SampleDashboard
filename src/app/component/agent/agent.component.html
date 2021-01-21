@@ -19,13 +19,14 @@
         <div class="table-responsive">
             <table class="table vm no-th-brd pro-of-month mb-0 v-middle">
                 <thead>
-                    <!-- <tr>
+                    <tr>
                         <th *ngFor="let columnName of backendData">{{columnName}}</th>
-                    </tr> -->
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let columnName of backendData">
+                    <tr *ngFor="let columnName of backendData2">
                         <td *ngFor="let col of columnName">{{col}}</td>
+                        <!-- <td>{{columnName}} </td> -->
 
                     </tr>
 

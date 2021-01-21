@@ -6,34 +6,19 @@ import { RestService } from "src/app/Services/rest.service";
   styleUrls: ["./visualization.component.css"],
 })
 export class VisualizationComponent implements OnInit {
-  name1: any;
-  yearsOfPrediction = [
-    { year: "5" },
-    { year: "10" },
-    { year: "15" },
-    { year: "20" },
-  ];
+  yearsOfPrediction = [{ year: "5" }, { year: "10" }];
   // chartForm: FormGroup;
   chartname: any;
   chart: any;
   pie: any;
   doughnut: any;
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  backendData: any;
-  public doughnutChartLabels: any[] = [2010, 2011, 2012, 2013];
-  public doughnutChartData: any[] = [
-    "James Burrows",
-    "James Burrows",
-    "James Burrows",
-  ];
+  public doughnutChartLabels: any[] = [];
+  public doughnutChartData: any[] = [];
   public doughnutChartType = "doughnut";
 
-  public lineChartLabels: any[] = [2010, 2011, 2012, 2013];
-  public lineChartData: any[] = [
-    "James Burrows",
-    "James Burrows",
-    "James Burrows",
-  ];
+  public lineChartLabels: any[] = [];
+  public lineChartData: any[] = [];
   public lineChartType = "line";
   public lineChartLegend = true;
 
@@ -52,8 +37,8 @@ export class VisualizationComponent implements OnInit {
   public barChartLegend = true;
   public barChartData: any[] = [5, 12, 14, 72];
 
-  public pieChartLabels: any[] = [2010, 2011];
-  public pieChartData: any[] = [5, 12, 14, "pie"];
+  public pieChartLabels: any[] = [];
+  public pieChartData: any[] = [];
   public pieChartType = "pie";
 
   public radarChartLabels: any[] = [2010, 2011, 2012, 2013];
@@ -63,24 +48,25 @@ export class VisualizationComponent implements OnInit {
   data: any;
   firstDataColumn: any = [];
   lastDataColumn: any = [];
+  allColumnNames: any;
+  PredictedColumnName: any;
+  totalRows: any;
+  totalNoOfSets: any;
+  minValue: any;
+  maxValue: any;
 
   constructor(private restservice: RestService) {}
 
   ngOnInit(): void {
     this.loadVisualzeData();
     this.getFirstColumn();
-    // this.predictedFiles();
   }
-  // predictedFiles() {
-  //   this.restservice.predictedFiles().subscribe((data) => {
-  //     console.log(data);
-  //   });
-  // }
   loadVisualzeData() {
     this.restservice.columnsName().subscribe(
       (data: any) => {
-        this.backendData = data;
-        console.log(this.backendData);
+        this.data = data;
+        this.allColumnNames = this.data[0];
+        console.log(this.allColumnNames);
       },
       (error: any) => {
         console.log(error);
@@ -91,43 +77,142 @@ export class VisualizationComponent implements OnInit {
     this.restservice.getFirstColumn().subscribe((data) => {
       console.log(data);
       this.firstDataColumn = data;
+      this.totalRows = this.firstDataColumn.length;
+      this.totalNoOfSets = this.firstDataColumn.length / 25;
+      // this.totalNoOfSets = this.totalNoOfSets.toArray();
+      console.log(this.totalNoOfSets);
     });
   }
-  setName1(name: any) {
-    console.log(name);
-
-    this.name1 = name;
+  setPredictedColumnName(name: any) {
+    this.PredictedColumnName = name;
   }
   checkChart(chart: any) {
-    console.log(chart);
     this.chartname = chart;
   }
   sendData() {
-    let firstDataColumn: any = [];
-    let lastDataColumn: any = [];
     this.restservice
-      .dataFileDetail({ name1: this.name1 })
+      .particular_column({ PredictedColumnName: this.PredictedColumnName })
       .subscribe((data: any) => {
         console.log(data);
         this.lastDataColumn = data;
-        for (let i = 0; i < 30; i++) {
-          lastDataColumn[i] = this.lastDataColumn[i];
-        }
-        console.log(lastDataColumn);
-        
-        for (let i = 0; i < 30; i++) {
-          firstDataColumn[i] = this.firstDataColumn[i];
-        }
-        console.log(firstDataColumn);
-        
-        this.doughnutChartLabels = firstDataColumn;
-        this.doughnutChartData = lastDataColumn;
-        this.pieChartData = lastDataColumn;
-        this.pieChartLabels = firstDataColumn;
-        this.lineChartData = lastDataColumn
-        this.lineChartLabels = firstDataColumn
-        // console.log(this.doughnutChartLabels);
-        // console.log(this.doughnutChartData);
+        this.assignChartData();
       });
+  }
+  setNumberOfSet(name: any) {
+    let firstDataColumn: any = [];
+    let lastDataColumn: any = [];
+    console.log(name.year);
+    if (name.year === 5) {
+      this.minValue = this.totalRows - 15;
+      this.maxValue = this.totalRows - 10;
+    } else if (name.year === 10) {
+      this.minValue = this.totalRows - 10;
+      this.maxValue = this.totalRows - 1;
+    }
+    console.log("MIN AND MAX", this.minValue, this.maxValue, this.totalRows);
+    // for (let i = this.minValue; i < this.maxValue; i++) {
+    //   lastDataColumn[i] = this.lastDataColumn[i];
+    // }
+
+    // for (let i = this.minValue; i < this.maxValue; i++) {
+    //   firstDataColumn[i] = this.firstDataColumn[i];
+    // }
+
+    console.log("MIN AND MAX", this.minValue, this.maxValue, this.totalRows);
+    for (let i = 70; i < 120; i++) {
+      lastDataColumn[i] = this.lastDataColumn[i];
+    }
+
+    for (let i = 70; i < 120; i++) {
+      firstDataColumn[i] = this.firstDataColumn[i];
+    }
+    // setTimeout{}
+    this.doughnutChartLabels = firstDataColumn;
+    this.doughnutChartData = lastDataColumn;
+    this.pieChartData = lastDataColumn;
+    this.pieChartLabels = firstDataColumn;
+    this.lineChartData = lastDataColumn;
+    this.lineChartLabels = firstDataColumn;
+    console.log(this.doughnutChartLabels);
+    console.log(this.doughnutChartData);
+
+    // let firstDataColumn: any = [];
+    // let lastDataColumn: any = [];
+    // if (name === "previous") {
+    // } else if (name === "next") {
+    //   console.log("MIN AND MAX", this.minValue,this.maxValue);
+    //   if (this.minValue >= 0 && this.maxValue < 50) {
+    //     console.log("1");
+
+    //     this.minValue = 25;
+    //     this.maxValue = 50;
+    //   }
+    // else if (this.maxValue > 49) {
+    //   console.log("2");
+    //   this.minValue = 50;
+    //   this.maxValue = 100;
+    // } else if (this.maxValue > 99) {
+    //   this.minValue = 100;
+    //   this.maxValue = 150;
+    // } else if (this.maxValue > 149) {
+    //   this.minValue = 150;
+    //   this.maxValue = 199;
+    // }
+    // console.log("MIN AND MAX", this.minValue,this.maxValue);
+    // for (let i = this.minValue; i < this.maxValue; i++) {
+    //   lastDataColumn[i] = this.lastDataColumn[i];
+    // }
+
+    // for (let i = this.minValue; i < this.maxValue; i++) {
+    //   firstDataColumn[i] = this.firstDataColumn[i];
+    // }
+    // this.doughnutChartLabels = firstDataColumn;
+    // this.doughnutChartData = lastDataColumn;
+    // this.pieChartData = lastDataColumn;
+    // this.pieChartLabels = firstDataColumn;
+    // this.lineChartData = lastDataColumn;
+    // this.lineChartLabels = firstDataColumn;
+    // console.log(this.doughnutChartLabels);
+    // console.log(this.doughnutChartData);
+    // }
+  }
+  assignChartData() {
+    let firstDataColumn: any = [];
+    let lastDataColumn: any = [];
+    if (this.totalRows >= 25) {
+      console.log("here 1");
+
+      this.minValue = 0;
+      this.maxValue = 25;
+    } else {
+      this.minValue = 0;
+      this.maxValue = this.totalRows - 1;
+    }
+
+    console.log("MIN AND MAX", this.minValue, this.maxValue, this.totalRows);
+    for (let i = 0; i < 50; i++) {
+      lastDataColumn[i] = this.lastDataColumn[i];
+    }
+
+    for (let i = 0; i < 50; i++) {
+      firstDataColumn[i] = this.firstDataColumn[i];
+    }
+
+    // for (let i = this.minValue; i < this.maxValue; i++) {
+    //   lastDataColumn[i] = this.lastDataColumn[i];
+    // }
+
+    // for (let i = this.minValue; i < this.maxValue; i++) {
+    //   firstDataColumn[i] = this.firstDataColumn[i];
+    // }
+    this.doughnutChartLabels = firstDataColumn;
+    this.doughnutChartData = lastDataColumn;
+    this.pieChartData = lastDataColumn;
+    this.pieChartLabels = firstDataColumn;
+    this.lineChartData = lastDataColumn;
+    this.lineChartLabels = firstDataColumn;
+    console.log(this.doughnutChartLabels);
+    console.log(this.doughnutChartData);
+    console.log(this.maxValue, this.minValue, this.totalRows);
   }
 }

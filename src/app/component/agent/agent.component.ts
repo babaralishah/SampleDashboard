@@ -11,6 +11,8 @@ import { FileholderService } from "src/app/Services/fileholder.service";
 })
 export class AgentComponent implements OnInit {
   backendData: any;
+  data: any;
+  backendData2: any;
 
   constructor(
     private FileholderService: FileholderService,
@@ -23,9 +25,11 @@ export class AgentComponent implements OnInit {
   loadVisualzeData() {
     this.restservice.columnsName().subscribe(
       (data) => {
-        this.backendData = data;
+        this.data = data;
+        this.backendData = this.data[0];
+        this.backendData2 = this.data[1];
         console.log(this.backendData);
-
+        console.log(this.backendData2);
         // var obj = JSON.parse(this.backendData);
         // console.log('Backend Data Json parse: ', this.backendData[0]);
       },

@@ -8,19 +8,18 @@ export class RestService {
   constructor(private http: HttpClient) {}
 
   url = "https://fyp-prediction-backend.herokuapp.com";
-  predictionPerform = "http://127.0.0.1:5000/predictionPerform/";
-  columnsNames = "http://127.0.0.1:5000/columnsNames/";
-  dataFileDetails = "http://127.0.0.1:5000/dataFileDetails/";
-  preprocessingDataFile = "http://127.0.0.1:5000/preprocessingDataFile/";
-  trainingTime = "http://127.0.0.1:5000/trainingTime/";
-  singlePrediction = "http://127.0.0.1:5000/singlePrediction/";
-  getTheDataFile = "http://127.0.0.1:5000/getTheDataFile/";
+  predictionPerform_url = "http://127.0.0.1:5000/predictionPerform/";
+  columnsNames_url = "http://127.0.0.1:5000/columnsNames/";
+  particular_column_url = "http://127.0.0.1:5000/particular_column/";
+  preprocessingDataFile_url = "http://127.0.0.1:5000/preprocessingDataFile/";
+  trainingTime_url = "http://127.0.0.1:5000/trainingTime/";
+  singlePrediction_url = "http://127.0.0.1:5000/singlePrediction/";
+  getTheDataFile_url = "http://127.0.0.1:5000/getTheDataFile/";
   // predictedFile = "http://127.0.0.1:5000/predictedFile/";
-  firstColumn = "http://127.0.0.1:5000/firstColumn/";
+  firstColumn_url = "http://127.0.0.1:5000/firstColumn/";
 
-
-  getFirstColumn(){
-    return this.http.get(this.firstColumn); //,{  responseType: 'arraybuffer' | 'blob' | 'json' | 'text' });   
+  getFirstColumn() {
+    return this.http.get(this.firstColumn_url); //,{  responseType: 'arraybuffer' | 'blob' | 'json' | 'text' });
   }
 
   // predictedFiles() {
@@ -28,14 +27,14 @@ export class RestService {
   // }
 
   preprocessingDataFiles() {
-    return this.http.get(this.preprocessingDataFile); //,{  responseType: 'arraybuffer' | 'blob' | 'json' | 'text' });
+    return this.http.get(this.preprocessingDataFile_url); //,{  responseType: 'arraybuffer' | 'blob' | 'json' | 'text' });
   }
 
   getTheDataFiles(fileToUpload: File) {
     const formData: FormData = new FormData();
     formData.append("file", fileToUpload, fileToUpload.name);
     console.log("File Name: ", fileToUpload.name); // and File and its name: \' ' + fileToUpload + fileToUpload.name);
-    return this.http.post(this.getTheDataFile, formData, {
+    return this.http.post(this.getTheDataFile_url, formData, {
       responseType: "text",
     });
   }
@@ -48,28 +47,26 @@ export class RestService {
     formData.append("username", "Chris");
     console.log(formData);
 
-    return this.http.post(this.singlePrediction, formData); // ,{  responseType: 'arraybuffer' | 'blob' | 'json' | 'text' });
+    return this.http.post(this.singlePrediction_url, formData); // ,{  responseType: 'arraybuffer' | 'blob' | 'json' | 'text' });
   }
 
   gettrainingTime() {
-    return this.http.get(this.trainingTime, { responseType: "text" });
+    return this.http.get(this.trainingTime_url, { responseType: "text" });
   }
 
   columnsName() {
-    console.log("calling column names");
-    
-    return this.http.get(this.columnsNames);
+    return this.http.get(this.columnsNames_url);
   }
 
-  dataFileDetail(credentials: object | any) {
+  particular_column(credentials: object | any) {
     const formData: FormData = new FormData();
-    formData.append("name1", credentials.name1);
+    formData.append("PredictedColumnName", credentials.PredictedColumnName);
     // formData.append("name2", credentials.name2);
     console.log(formData);
-    return this.http.post(this.dataFileDetails, formData);
+    return this.http.post(this.particular_column_url, formData);
   }
 
   getPrediction() {
-    return this.http.get(this.predictionPerform); // ,{  responseType: 'arraybuffer' | 'blob' | 'json' | 'text' });
+    return this.http.get(this.predictionPerform_url); // ,{  responseType: 'arraybuffer' | 'blob' | 'json' | 'text' });
   }
 }

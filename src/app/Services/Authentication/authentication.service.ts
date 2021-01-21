@@ -14,7 +14,6 @@ import { catchError, map } from "rxjs/operators";
   providedIn: "root",
 })
 export class AuthenticationService {
-
   token: any;
   headers = new HttpHeaders().set("Content-Type", "application/json");
   // private readonly url = 'https://fyp-auth-backend.herokuapp.com/api'; // environment.url;
@@ -25,17 +24,12 @@ export class AuthenticationService {
   register(user: any): Observable<any> {
     return this.httpClient.post(`${this.url}/users/signup`, user);
   }
-
-  // create service to get and set the token to local storage
-
   setToken(token: any) {
     localStorage.setItem("token", token);
     console.log(token);
   }
   getDecodedToken(token: any): any {
     try {
-      // console.log(jwt_decode(token));
-
       return jwt_decode(token);
     } catch (Error) {
       console.log(Error);
@@ -49,8 +43,10 @@ export class AuthenticationService {
   createFileUrl(data: any) {
     this.token = this.getToken();
     const user = this.getDecodedToken(this.token);
-    // console.log(user);
-    return this.httpClient.post(`${this.url}/users/${user._id}/createFileUrl`, data);
+    return this.httpClient.post(
+      `${this.url}/users/${user._id}/createFileUrl`,
+      data
+    );
   }
   getFilesUrl(data: any) {
     return this.httpClient.get(`${this.url}/:id/getFilesUrl`, data);
