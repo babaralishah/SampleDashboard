@@ -16,10 +16,11 @@ import { catchError, map } from "rxjs/operators";
 export class AuthenticationService {
   token: any;
   headers = new HttpHeaders().set("Content-Type", "application/json");
-  // private readonly url = 'https://fyp-auth-backend.herokuapp.com/api'; // environment.url;
-  private readonly url = "http://localhost:4000/api";
+  private readonly url = 'https://node-backend-fyp.herokuapp.com/api'; // environment.url;
+  // private readonly url = "http://localhost:4000/api";
+  
 
-  constructor(private httpClient: HttpClient, public router: Router) {}
+  constructor(private httpClient: HttpClient, private router: Router) {}
   ///////// Function to Register the new user /////////////
 
   getFiles(id: any) {
@@ -64,8 +65,7 @@ export class AuthenticationService {
   }
 
   /////////// Function to Login the already existed user /////////////
-  public login(user: any): Observable<any> {
-    console.log("Hello", user);
+  login(user: any): Observable<any> {
     return this.httpClient.post(`${this.url}/users/login`, user);
   }
   ///////// Error Handling /////////////////

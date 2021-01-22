@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initialize();
-    this.tokenization();
+    // this.tokenization();
   }
   async tokenization() {
     const token: any = await this.authService.getToken();
@@ -62,13 +62,13 @@ export class LoginComponent implements OnInit {
         const msg = data.status;
         const token = data.token;
         const email = this.loginForm.value.email;
-        if(!data.success){
+        if (!data.success) {
           this.toastr.error(data.status, "Error", {
             timeOut: 5000,
           });
           return;
         }
-        
+
         this.toastr.success(msg, "Success", {
           timeOut: 5000,
         });
