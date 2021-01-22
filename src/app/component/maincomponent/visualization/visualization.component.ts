@@ -62,6 +62,8 @@ export class VisualizationComponent implements OnInit {
     this.getFirstColumn();
   }
   loadVisualzeData() {
+    console.log("column names");
+    
     this.restservice.columnsName().subscribe(
       (data: any) => {
         this.data = data;
