@@ -108,13 +108,13 @@ export class VisualizationComponent implements OnInit {
   setNumberOfSet(name: any) {
     let firstDataColumn: any = [];
     let lastDataColumn: any = [];
-    console.log(name.year);
-    if (name.year == 5) {
+    console.log(name);
+    if (name == 5) {
       console.log("MIN AND MAX", this.minValue, this.maxValue, this.totalRows);
       this.minValue = this.totalRows - 10;
       this.maxValue = this.totalRows - 5;
       console.log("MIN AND MAX", this.minValue, this.maxValue, this.totalRows);
-    } else if (name.year == 10) {
+    } else if (name == 10) {
       this.minValue = this.totalRows - 10;
       this.maxValue = this.totalRows;
     }
@@ -142,6 +142,42 @@ export class VisualizationComponent implements OnInit {
     console.log(this.doughnutChartData);
   }
 
+  setNumberOfSet3(name: any) {
+    let firstDataColumn: any = [];
+    let lastDataColumn: any = [];
+    console.log(name?.year);
+    if (name == "next") {
+      console.log("MIN AND MAX", this.minValue, this.maxValue, this.totalRows);
+      this.minValue += 10; // this.totalRows - 10;
+      this.maxValue += 10; // this.totalRows - 5;
+      console.log("MIN AND MAX", this.minValue, this.maxValue, this.totalRows);
+    } else if (name == "previous") {
+      this.minValue -= 10; //this.totalRows - 10;
+      this.maxValue -= 10; // this.totalRows;
+    }
+    console.log("MIN AND MAX", this.minValue, this.maxValue, this.totalRows);
+    let arrayIterator = this.maxValue - this.minValue;
+
+    for (let i = 0; i < this.maxValue; i++) {
+      if (i < arrayIterator)
+        lastDataColumn[i] = this.lastDataColumn[i + this.minValue];
+    }
+
+    for (let i = 0; i < this.maxValue; i++) {
+      if (i < arrayIterator)
+        firstDataColumn[i] = this.firstDataColumn[i + this.minValue];
+    }
+    console.log(firstDataColumn);
+    console.log(lastDataColumn);
+    this.doughnutChartLabels = firstDataColumn;
+    this.doughnutChartData = lastDataColumn;
+    this.pieChartData = lastDataColumn;
+    this.pieChartLabels = firstDataColumn;
+    this.lineChartData = lastDataColumn;
+    this.lineChartLabels = firstDataColumn;
+    console.log(this.doughnutChartLabels);
+    console.log(this.doughnutChartData);
+  }
   assignChartData() {
     let firstDataColumn: any = [];
     let lastDataColumn: any = [];
@@ -175,6 +211,12 @@ export class VisualizationComponent implements OnInit {
   setNumberOfSets(name: any) {
     this.restservice.futureYearPrediction(name).subscribe((data) => {
       console.log(data);
+      this.doughnutChartLabels = this.firstDataColumn;
+      this.doughnutChartData = this.lastDataColumn;
+      this.pieChartData = this.lastDataColumn;
+      this.pieChartLabels = this.firstDataColumn;
+      this.lineChartData = this.lastDataColumn;
+      this.lineChartLabels = this.firstDataColumn;
     });
   }
 }

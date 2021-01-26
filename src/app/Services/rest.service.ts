@@ -8,6 +8,7 @@ export class RestService {
   constructor(private http: HttpClient) {}
 
   url = "https://fyp-prediction-backend.herokuapp.com";
+  
   predictionPerform_url = "http://127.0.0.1:5000/predictionPerform/";
   columnsNames_url = "http://127.0.0.1:5000/columnsNames/";
   particular_column_url = "http://127.0.0.1:5000/particular_column/";

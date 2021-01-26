@@ -37,7 +37,7 @@ export const Approutes: Routes = [
             (m) => m.ComponentsModule
           ),
       },
-      { path: "Main", canActivate: [IsLoginGuard], component: MainComponent },
+      { path: "Main", component: MainComponent },
       {
         path: "Visualization",
         canActivate: [IsLoginGuard],

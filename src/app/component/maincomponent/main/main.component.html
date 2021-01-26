@@ -4,7 +4,9 @@
             <div class="row">
                 <h2>Data File Selection</h2>
             </div>
-            <br><br>
+            <br>
+            <h2>Please ! upload your dataset for the prediction.</h2>
+            <br>
             <div class="row">
                 <input #fileInput name="file" type="file" (change)="handleFileInput($event.target.files)">
             </div>
@@ -126,11 +128,11 @@
                 <button class="btn3 btn-primary" (click)="singlePrediction('3','Decision Tree')">Decision Tree</button>
                 <br>
                 <button class="btn3 btn-primary" (click)="singlePrediction('4','K nearest neighbor')">K nearest neighbor</button>
-                <!-- <br>
+                <br>
                 <button class="btn3 btn-primary" (click)="singlePrediction('5','Naive Bayes')">Naive Bayes</button>
                 <br>
-                <button class="btn3 btn-primary" (click)="singlePrediction('6','Random Forest')">Random Forest</button>
-                <br> -->
+                <button class="btn3 btn-primary" (click)="singlePrediction('6','SVM')">Support Vector Machine</button>
+                <br>
             </div>
         </div>
     </div>
