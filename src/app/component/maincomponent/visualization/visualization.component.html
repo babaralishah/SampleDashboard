@@ -34,8 +34,8 @@
             <button class="btn btn-primary" (click)="checkChart('bubble')">Bubble Chart</button> -->
 
         </div>
-        <!-- <ng-select class="ng-select predict-select pull-right" [items]="yearsOfPrediction" bindLabel="year" (change)="setNumberOfSet($event)" bindValue="year" placeholder="Years to Predict">
-        </ng-select> -->
+        <ng-select class="ng-select predict-select pull-right" [items]="yearsOfPrediction" bindLabel="year" (change)="setNumberOfSet($event)" bindValue="year" placeholder="Years to Predict">
+        </ng-select>
 
     </div>
     <br>
@@ -113,11 +113,11 @@
                         <tr>
                             <td class="b-0">Years</td>
                             <!-- <td class="text-right font-medium b-0">{{firstDataColumn[0]}} - {{firstDataColumn[49]}}</td> -->
-                            <td class="text-right font-medium b-0">{{firstDataColumn[0]}} - {{firstDataColumn[50]}}</td>
+                            <td class="text-right font-medium b-0">{{firstDataColumn[minValue]}} - {{firstDataColumn[maxValue - 1]}}</td>
                         </tr>
                         <tr>
                             <td *ngIf="PredictedColumnName">{{PredictedColumnName}}(Average): </td>
-                            <td *ngIf="PredictedColumnName" class="text-right font-medium">{{lastDataColumn[10]}}</td>
+                            <td *ngIf="PredictedColumnName" class="text-right font-medium">{{lastDataColumn[maxValue-minValue]}}</td>
                         </tr>
                     </table>
                     <!-- <div *ngFor="let number of totalNoOfSets">{{totalNoOfSets}}</div> -->

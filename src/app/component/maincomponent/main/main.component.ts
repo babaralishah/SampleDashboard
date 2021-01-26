@@ -42,6 +42,8 @@ export class MainComponent implements OnInit {
   token: any;
   tokendata: any;
   userFiles: any;
+  predictedData: any = [];
+  isFileReceived: any;
 
   constructor(
     public restservice: RestService,
@@ -119,6 +121,7 @@ export class MainComponent implements OnInit {
       this.restservice.getTheDataFiles(this.fileToUpload).subscribe((data) => {
         // this.data = data;
         // this.results = this.data[0].data;
+        this.isFileReceived = data;
         console.log("Data: ", data);
         if (data === "true") {
           console.log(this.fileToUpload.name);
@@ -249,9 +252,9 @@ export class MainComponent implements OnInit {
       .singlePredictions({ algorithm: algorithm })
       .subscribe((data) => {
         console.log(data);
-        this.data = data;
-        this.y_pred = this.data[0];
-        this.y_test = this.data[1];
+        this.predictedData = data;
+        this.y_pred = this.predictedData[0];
+        this.y_test = this.predictedData[1];
         console.log(this.y_pred);
 
         console.log(this.y_test);

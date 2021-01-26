@@ -15,7 +15,7 @@ export class RestService {
   trainingTime_url = "http://127.0.0.1:5000/trainingTime/";
   singlePrediction_url = "http://127.0.0.1:5000/singlePrediction/";
   getTheDataFile_url = "http://127.0.0.1:5000/getTheDataFile/";
-  // predictedFile = "http://127.0.0.1:5000/predictedFile/";
+  futureYearPredictions = "http://127.0.0.1:5000/futureYearPrediction/";
   firstColumn_url = "http://127.0.0.1:5000/firstColumn/";
 
   getFirstColumn() {
@@ -68,5 +68,8 @@ export class RestService {
 
   getPrediction() {
     return this.http.get(this.predictionPerform_url); // ,{  responseType: 'arraybuffer' | 'blob' | 'json' | 'text' });
+  }
+  futureYearPrediction(object: any) {
+    return this.http.post(this.futureYearPredictions, object);
   }
 }

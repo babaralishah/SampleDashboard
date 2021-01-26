@@ -63,7 +63,7 @@ export class VisualizationComponent implements OnInit {
   }
   loadVisualzeData() {
     console.log("column names");
-    
+
     this.restservice.columnsName().subscribe(
       (data: any) => {
         this.data = data;
@@ -75,6 +75,7 @@ export class VisualizationComponent implements OnInit {
       }
     );
   }
+
   getFirstColumn() {
     this.restservice.getFirstColumn().subscribe((data) => {
       console.log(data);
@@ -85,12 +86,15 @@ export class VisualizationComponent implements OnInit {
       console.log(this.totalNoOfSets);
     });
   }
+
   setPredictedColumnName(name: any) {
     this.PredictedColumnName = name;
   }
+
   checkChart(chart: any) {
     this.chartname = chart;
   }
+
   sendData() {
     this.restservice
       .particular_column({ PredictedColumnName: this.PredictedColumnName })
@@ -100,35 +104,34 @@ export class VisualizationComponent implements OnInit {
         this.assignChartData();
       });
   }
+
   setNumberOfSet(name: any) {
     let firstDataColumn: any = [];
     let lastDataColumn: any = [];
     console.log(name.year);
-    if (name.year === 5) {
-      this.minValue = this.totalRows - 15;
-      this.maxValue = this.totalRows - 10;
-    } else if (name.year === 10) {
+    if (name.year == 5) {
+      console.log("MIN AND MAX", this.minValue, this.maxValue, this.totalRows);
       this.minValue = this.totalRows - 10;
-      this.maxValue = this.totalRows - 1;
+      this.maxValue = this.totalRows - 5;
+      console.log("MIN AND MAX", this.minValue, this.maxValue, this.totalRows);
+    } else if (name.year == 10) {
+      this.minValue = this.totalRows - 10;
+      this.maxValue = this.totalRows;
     }
     console.log("MIN AND MAX", this.minValue, this.maxValue, this.totalRows);
-    // for (let i = this.minValue; i < this.maxValue; i++) {
-    //   lastDataColumn[i] = this.lastDataColumn[i];
-    // }
+    let arrayIterator = this.maxValue - this.minValue;
 
-    // for (let i = this.minValue; i < this.maxValue; i++) {
-    //   firstDataColumn[i] = this.firstDataColumn[i];
-    // }
-
-    console.log("MIN AND MAX", this.minValue, this.maxValue, this.totalRows);
-    for (let i = 70; i < 120; i++) {
-      lastDataColumn[i] = this.lastDataColumn[i];
+    for (let i = 0; i < this.maxValue; i++) {
+      if (i < arrayIterator)
+        lastDataColumn[i] = this.lastDataColumn[i + this.minValue];
     }
 
-    for (let i = 70; i < 120; i++) {
-      firstDataColumn[i] = this.firstDataColumn[i];
+    for (let i = 0; i < this.maxValue; i++) {
+      if (i < arrayIterator)
+        firstDataColumn[i] = this.firstDataColumn[i + this.minValue];
     }
-    // setTimeout{}
+    console.log(firstDataColumn);
+    console.log(lastDataColumn);
     this.doughnutChartLabels = firstDataColumn;
     this.doughnutChartData = lastDataColumn;
     this.pieChartData = lastDataColumn;
@@ -137,76 +140,28 @@ export class VisualizationComponent implements OnInit {
     this.lineChartLabels = firstDataColumn;
     console.log(this.doughnutChartLabels);
     console.log(this.doughnutChartData);
-
-    // let firstDataColumn: any = [];
-    // let lastDataColumn: any = [];
-    // if (name === "previous") {
-    // } else if (name === "next") {
-    //   console.log("MIN AND MAX", this.minValue,this.maxValue);
-    //   if (this.minValue >= 0 && this.maxValue < 50) {
-    //     console.log("1");
-
-    //     this.minValue = 25;
-    //     this.maxValue = 50;
-    //   }
-    // else if (this.maxValue > 49) {
-    //   console.log("2");
-    //   this.minValue = 50;
-    //   this.maxValue = 100;
-    // } else if (this.maxValue > 99) {
-    //   this.minValue = 100;
-    //   this.maxValue = 150;
-    // } else if (this.maxValue > 149) {
-    //   this.minValue = 150;
-    //   this.maxValue = 199;
-    // }
-    // console.log("MIN AND MAX", this.minValue,this.maxValue);
-    // for (let i = this.minValue; i < this.maxValue; i++) {
-    //   lastDataColumn[i] = this.lastDataColumn[i];
-    // }
-
-    // for (let i = this.minValue; i < this.maxValue; i++) {
-    //   firstDataColumn[i] = this.firstDataColumn[i];
-    // }
-    // this.doughnutChartLabels = firstDataColumn;
-    // this.doughnutChartData = lastDataColumn;
-    // this.pieChartData = lastDataColumn;
-    // this.pieChartLabels = firstDataColumn;
-    // this.lineChartData = lastDataColumn;
-    // this.lineChartLabels = firstDataColumn;
-    // console.log(this.doughnutChartLabels);
-    // console.log(this.doughnutChartData);
-    // }
   }
+
   assignChartData() {
     let firstDataColumn: any = [];
     let lastDataColumn: any = [];
     if (this.totalRows >= 25) {
       console.log("here 1");
-
       this.minValue = 0;
       this.maxValue = 25;
-    } else {
+    } else if (this.totalRows <= 25) {
       this.minValue = 0;
       this.maxValue = this.totalRows - 1;
     }
 
     console.log("MIN AND MAX", this.minValue, this.maxValue, this.totalRows);
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < this.maxValue; i++) {
       lastDataColumn[i] = this.lastDataColumn[i];
     }
 
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < this.maxValue; i++) {
       firstDataColumn[i] = this.firstDataColumn[i];
     }
-
-    // for (let i = this.minValue; i < this.maxValue; i++) {
-    //   lastDataColumn[i] = this.lastDataColumn[i];
-    // }
-
-    // for (let i = this.minValue; i < this.maxValue; i++) {
-    //   firstDataColumn[i] = this.firstDataColumn[i];
-    // }
     this.doughnutChartLabels = firstDataColumn;
     this.doughnutChartData = lastDataColumn;
     this.pieChartData = lastDataColumn;
@@ -215,6 +170,11 @@ export class VisualizationComponent implements OnInit {
     this.lineChartLabels = firstDataColumn;
     console.log(this.doughnutChartLabels);
     console.log(this.doughnutChartData);
-    console.log(this.maxValue, this.minValue, this.totalRows);
+    console.log("MIN AND MAX", this.minValue, this.maxValue, this.totalRows);
+  }
+  setNumberOfSets(name: any) {
+    this.restservice.futureYearPrediction(name).subscribe((data) => {
+      console.log(data);
+    });
   }
 }

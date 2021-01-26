@@ -9,7 +9,7 @@
                 <input #fileInput name="file" type="file" (change)="handleFileInput($event.target.files)">
             </div>
             <br><br>
-            <div class="row">
+            <div class="row" *ngIf="isFileReceived">
                 <!-- *ngIf="results" -->
                 <button class="btn btn-primary" (click)="performPreprocessing()">Proceed Next for <b>Cleansing/Preprocessing</b></button>
             </div>
@@ -53,7 +53,7 @@
 
         <br><br>
 
-        <div class="row">
+        <div class="row" *ngIf="preProcessTech">
             <div class="col-5">
                 <button class="btn btn-primary" (click)="backToFileInput()">back</button>
             </div>
@@ -126,11 +126,11 @@
                 <button class="btn3 btn-primary" (click)="singlePrediction('3','Decision Tree')">Decision Tree</button>
                 <br>
                 <button class="btn3 btn-primary" (click)="singlePrediction('4','K nearest neighbor')">K nearest neighbor</button>
-                <br>
+                <!-- <br>
                 <button class="btn3 btn-primary" (click)="singlePrediction('5','Naive Bayes')">Naive Bayes</button>
                 <br>
                 <button class="btn3 btn-primary" (click)="singlePrediction('6','Random Forest')">Random Forest</button>
-                <br>
+                <br> -->
             </div>
         </div>
     </div>
@@ -200,7 +200,7 @@
             <h2>{{selectedAlgorithm}}</h2>
         </div>
         <div class="col-12">
-            <p><b>Predicted Results</b> vs <b>Actual Results</b></p>
+            <p><b>Predicted Results</b></p>
         </div>
         <table id="results" class="table table-striped">
             <thead>
@@ -208,9 +208,9 @@
                 <th>
                     y_pred
                 </th>
-                <th>
+                <!-- <th>
                     y_test
-                </th>
+                </th> -->
                 <!-- </tr> -->
 
                 <!-- <tr *ngFor="let row of y_pred">
@@ -221,10 +221,11 @@
                 </tr> -->
             </thead>
             <tbody>
-                <tr *ngFor="let row of data ">
-                    <td>
+                <tr *ngFor="let row of predictedData[0]">
+                    <td>{{row}} </td>
+                    <!-- <td>
                         {{row[0]}}</td>
-                    <td>{{row[1]}}</td>
+                    <td>{{row[1]}}</td> -->
                 </tr>
             </tbody>
         </table>
